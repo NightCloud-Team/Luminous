@@ -66,7 +66,8 @@ if __name__ == "__main__":
     # thread1 = window()
     # thread1.start()
     path = os.path.abspath("./")
-    subprocess.Popen("python manage.py runserver 127.0.0.1:8000", cwd = path)
+    #subprocess.Popen("python manage.py runserver 127.0.0.1:8000", cwd = path)
+    subprocess.Popen("python web_ui.py", cwd = path)
     high = 800
     width = 600
     app = QtWidgets.QApplication(sys.argv)
