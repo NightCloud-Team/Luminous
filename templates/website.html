@@ -1,74 +1,56 @@
-﻿<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="https://kit.fontawesome.com/761bf55008.js" crossorigin="anonymous"></script>
-    <title>首页</title>
+    <title>网页屏蔽设置</title>
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/761bf55008.js" crossorigin="anonymous"></script>
     <style>
-    * {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        text-decoration: none;
-    }
-
-    body {
-        background-image: url(https://api.vvhan.com/api/bing?rand=sj);
-        background-position: center center;
-    }
-
-    #nav {
-        width: 750px;
-        height: 72px;
-        background-color: rgba(247, 249, 250, 0.7);
-        border-radius: 20px;
-        margin: 20px auto;
-    }
-
-    #nav>ul>li {
-        float: left;
-        width: 175.75px;
-        height: 72px;
-        text-align: center;
-    }
-
-    #nav>ul>li>a {
-        text-align: center;
-        line-height: 72px;
-        font-size: 20px;
-        color: black;
-    }
-
-    #nav>ul>li>a:hover {
-        color: orange;
-    }
-
-    ul>span {
-        float: left;
-        line-height: 72px;
-        color: rgb(116, 116, 116);
-        font-weight: 800;
-        font-size: 24px;
-    }
-
-    #nav2 {
-        width: 750px;
-        height: 500px;
-        background-color: rgba(247, 249, 250, 0.7);
-        border-radius: 20px;
-        margin: 20px auto;
-        text-align: center
-    }
-
-    #nav2>a {
-        text-align: right;
-        font-size: 24px;
-
-    }
-
-    .loader {
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+            font-weight: 520px;
+        }
+        body {
+            background-image: url(https://api.vvhan.com/api/bing?rand=sj);
+            background-position: center center;
+        }
+        #nav {
+            width: 750px;
+            height: 72px;
+            background-color: rgba(247, 249, 250, 0.7);
+            border-radius: 20px;
+            margin: 20px auto;
+        }
+ 
+        #nav>ul>li {
+            float: left;
+            width: 175.75px;
+            height: 72px;
+            text-align: center;
+        }
+ 
+        #nav>ul>li>a {
+            text-align: center;
+            line-height: 72px;
+            font-size: 20px;
+            color: black;
+        }
+ 
+        #nav>ul>li>a:hover {
+            color: orange;
+        }
+ 
+        ul>span {
+            float: left;
+            line-height: 72px;
+            color: rgb(116, 116, 116);
+            font-weight: 800;
+            font-size: 24px;
+        }
+        .loader {
         background: radial-gradient(#222, #000);
         bottom: 0;
         left: 0;
@@ -91,9 +73,9 @@
     }
 
     .loader-line-wrap {
-        animation:
-                spin 2000ms cubic-bezier(.175, .885, .32, 1.275) infinite
-    ;
+        animation: 
+            spin 2000ms cubic-bezier(.175, .885, .32, 1.275) infinite
+        ;
         box-sizing: border-box;
         height: 50px;
         left: 0;
@@ -162,7 +144,6 @@
     }
     </style>
 </head>
-
 <body>
     <div class="loader">
         <div class="loader-inner">
@@ -191,16 +172,11 @@
             <li><a href="{{ url_for('SpecialThanks') }}" class="fa-solid fa-user">鸣谢清单</a></li><span></span>
         </ul>
     </div>
-    <div id="nav2">
-        <a>Luminous beta0.0.1 内部测试第一版</a><br>
-        <a>1.进行了ui的设计</a><br>
-        <a>2.有大量的bug</a>
-    </div>
+    
 </body>
 <script>
     $(window).on("load", function () {
         $(".loader").fadeOut("slow");
     })
 </script>
-
 </html>
