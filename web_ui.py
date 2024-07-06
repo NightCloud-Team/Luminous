@@ -20,6 +20,14 @@ def select_personalization():
 def wallpaper():
     return flask.render_template('wallpaper.html')
 
+@app.route('/shortcut_menu/select_personalization/color')
+def color():
+    return flask.render_template('color.html')
+
+@app.route('/shortcut_menu/select_personalization/taskbar')
+def taskbar():
+    return flask.render_template('taskbar.html')
+
 @app.route('/shortcut_menu/select_system')
 def select_system():
     return flask.render_template('index_system.html')
@@ -43,5 +51,5 @@ def website():
     return flask.render_template('website.html')
 
 
-app.run(host='127.0.0.1', port=8000,debug=True)
-#app.run(host='127.0.0.1', port=8000)
+#app.run(host='127.0.0.1', port=8000,debug=True)
+app.run(host='127.0.0.1', port=8000)
