@@ -4,6 +4,7 @@ import ctypes
 from flask import Flask, redirect, url_for,request
 from ctypes import wintypes
 import winreg
+import subprocess
 from luminous.windows import *
 app = flask.Flask(__name__)
 
@@ -48,15 +49,16 @@ def taskbar():
 @app.route('/shortcut_menu/select_personalization/taskbar_set',methods=['POST'])
 def taskbar_set():
     option1 = request.form.get('option1')
-    option2 = request.form.get('quantity')
+    path_1 = os.path.abspath("./Turn_ON_auto-hide_taskbar.bat")
+    path_2 = os.path.abspath("./Turn_OFF_auto-hide_taskbar.bat")
+    print(path_1)
+    print(path_2)
     if option1 == 'on':
-        value = 1
+        os.system(path_1)
     else:
-        value = 0
+        os.system(path_2)
     
     #print(value)
-    ctypes.windll.user32.SystemParametersInfoW(15, 0, value, 3)
-    ctypes.windll.user32.SystemParametersInfoW(82, 0, option2, 3)
     return flask.render_template('success.html')
 
 @app.route('/shortcut_menu/select_system')

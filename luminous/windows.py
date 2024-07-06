@@ -28,3 +28,16 @@ def is_taskbar_auto_hide_enabled():
     else:
         print("任务栏在桌面模式下自动隐藏已禁用。")
         return False
+import ctypes
+import sys
+
+def run_as_admin():
+    if ctypes.windll.shell32.IsUserAnAdmin() != 0:
+        # 如果已经是管理员，直接运行
+        print("已经以管理员权限运行。")
+        return True
+    else:
+        # 如果不是管理员，使用ShellExecute以管理员权限重新运行
+        params = ' '.join([sys.executable] + sys.argv)
+        ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, params, None, 1)
+        return False
