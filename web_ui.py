@@ -16,6 +16,10 @@ def shortcut_menu():
 def select_personalization():
     return flask.render_template('index_personalization.html')
 
+@app.route('/shortcut_menu/select_personalization/wallpaper')
+def wallpaper():
+    return flask.render_template('wallpaper.html')
+
 @app.route('/shortcut_menu/select_system')
 def select_system():
     return flask.render_template('index_system.html')
@@ -40,3 +44,4 @@ def website():
 
 
 app.run(host='127.0.0.1', port=8000,debug=True)
+#app.run(host='127.0.0.1', port=8000)

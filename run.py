@@ -16,8 +16,8 @@ import pathlib
 import threading
 import os
 from PyQt5 import QtWebEngineWidgets
-
-
+import signal
+import atexit
 #subprocess.run(["python", "manage.py","runserver","127.0.0.1:8000"])
 class Ui_MainWindow(QtWidgets.QMainWindow):
     def __init__(self,high,width):
@@ -25,8 +25,8 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.setWindowTitle("微光-Luminous")
         self.setFixedSize(high, width)
         self.setWindowIcon(QtGui.QIcon("luminous_logo.png"))
-        ui_web = subprocess.Popen("python web_ui.py", cwd = path)
-        self.process = ui_web
+        #ui_web = subprocess.Popen("python web_ui.py", cwd = path)
+        #self.process = ui_web
 
         self.setupUi(self)
 
@@ -61,7 +61,12 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "微光-Luminous"))
     
     def on_close(self, event):
-        self.process.kill()
+        #self.process.kill()
+        #self.process.wait()
+        # while self.process.poll() == 0:
+        #     self.process.kill()
+        # if self.process.poll() != 0:
+        #     self.process.kill()
         print("关闭窗口")
         event.accept()
 # class Ui_MainWindow(QMainWindow):
@@ -117,6 +122,7 @@ if __name__ == "__main__":
     # thread1 = window()
     # thread1.start()
     path = os.path.abspath("./")
+    subprocess.Popen("python web_ui.py", cwd = path)
     #subprocess.Popen("python manage.py runserver 127.0.0.1:8000", cwd = path)
     #ui_web = subprocess.Popen("python web_ui.py", cwd = path)
     high = 800
@@ -124,7 +130,7 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     ui = Ui_MainWindow(high,width)
     ui.show()
-    
+    #=app.exec_()
     sys.exit(app.exec_())
     #app = QtWidgets.QApplication(sys.argv)
     #MainWindow = QtWidgets.QMainWindow()
