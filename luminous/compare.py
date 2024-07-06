@@ -5,10 +5,6 @@ def sanity_ocr ():
     from paddleocr import PaddleOCR
     import re
     resul_t = []
-    subprocess.run(['adb', 'kill-server'])
-    subprocess.run(['adb', 'connect', '127.0.0.1:5555'])
-    subprocess.run(['adb', '-s', '127.0.0.1:5555', 'shell', 'screencap', '-p', '/sdcard/screen.png'])
-    subprocess.run(['adb', '-s', '127.0.0.1:5555', 'pull', '/sdcard/screen.png', './picture/screenshot'])
     ocr = PaddleOCR(use_angle_cls=True, lang="ch")  # need to run only once to download and load model into memory
     img_path = "./picture/screenshot/screen.png"
     result = ocr.ocr(img_path, cls=True)

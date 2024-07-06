@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
 import subprocess
 import pathlib
@@ -18,14 +19,26 @@ from PyQt5 import QtWebEngineWidgets
 
 
 #subprocess.run(["python", "manage.py","runserver","127.0.0.1:8000"])
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow,high,width):
+class Ui_MainWindow(QtWidgets.QMainWindow):
+    def __init__(self,high,width):
+        super().__init__()
+        self.setWindowTitle("微光-Luminous")
+        self.setFixedSize(high, width)
+        self.setWindowIcon(QtGui.QIcon("luminous_logo.png"))
+        ui_web = subprocess.Popen("python web_ui.py", cwd = path)
+        self.process = ui_web
+
+        self.setupUi(self)
+
+    def setupUi(self, MainWindow):
+        
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(high, width)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.centralwidget)
         self.horizontalLayout.setObjectName("horizontalLayout")
+
         self.webEngineView = QtWebEngineWidgets.QWebEngineView(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -34,15 +47,53 @@ class Ui_MainWindow(object):
         self.webEngineView.setSizePolicy(sizePolicy)
         self.webEngineView.setUrl(QtCore.QUrl("http://127.0.0.1:8000"))
         self.webEngineView.setObjectName("webEngineView")
+
         self.horizontalLayout.addWidget(self.webEngineView)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        self.closeEvent = self.on_close
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "微光-Luminous"))
+    
+    def on_close(self, event):
+        self.process.kill()
+        print("关闭窗口")
+        event.accept()
+# class Ui_MainWindow(QMainWindow):
+#     def __init__(self):
+#         super().__init__()
+#         self.setWindowTitle("微光-Luminous")
+#         self.setFixedSize(800, 600)
+#     def setupUi(self, MainWindow):
+#         #MainWindow.setObjectName("微光-Luminous")
+#         #self.setFixedSize(high, width)
+#         #self.setWindowIcon(QtGui.QIcon("icon.png"))
+#         self.centralwidget = QtWidgets.QWidget(MainWindow)
+#         self.centralwidget.setObjectName("centralwidget")
+#         self.horizontalLayout = QtWidgets.QHBoxLayout(self.centralwidget)
+#         self.horizontalLayout.setObjectName("horizontalLayout")
+#         self.webEngineView = QtWebEngineWidgets.QWebEngineView(self.centralwidget)
+#         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+#         sizePolicy.setHorizontalStretch(0)
+#         sizePolicy.setVerticalStretch(0)
+#         sizePolicy.setHeightForWidth(self.webEngineView.sizePolicy().hasHeightForWidth())
+#         self.webEngineView.setSizePolicy(sizePolicy)
+#         self.webEngineView.setUrl(QtCore.QUrl("http://127.0.0.1:8000"))
+#         self.webEngineView.setObjectName("webEngineView")
+#         self.horizontalLayout.addWidget(self.webEngineView)
+#         MainWindow.setCentralWidget(self.centralwidget)
+
+#         self.retranslateUi(MainWindow)
+#         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+#     def retranslateUi(self, MainWindow):
+#         _translate = QtCore.QCoreApplication.translate
+#         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
 
 # class ui(threading.Thread):
 #     def __init__(self):
@@ -67,15 +118,20 @@ if __name__ == "__main__":
     # thread1.start()
     path = os.path.abspath("./")
     #subprocess.Popen("python manage.py runserver 127.0.0.1:8000", cwd = path)
-    subprocess.Popen("python web_ui.py", cwd = path)
+    #ui_web = subprocess.Popen("python web_ui.py", cwd = path)
     high = 800
-    width = 600
+    width = 655
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow,high,width)
-    MainWindow.show()
+    ui = Ui_MainWindow(high,width)
+    ui.show()
+    
     sys.exit(app.exec_())
+    #app = QtWidgets.QApplication(sys.argv)
+    #MainWindow = QtWidgets.QMainWindow()
+    #ui = Ui_MainWindow()
+    #ui.setupUi(MainWindow)
+    #MainWindow.show()
+    #sys.exit(app.exec_())
     
     # thread1.join()
     

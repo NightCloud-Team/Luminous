@@ -192,9 +192,9 @@
         </ul>
     </div>
     <div id="nav2">
-        <a>Luminous beta0.0.1 内部测试第一版</a><br>
-        <a>1.进行了ui的设计</a><br>
-        <a>2.有大量的bug</a>
+        <button onclick="location.href='{{ url_for('select_personalization') }}'">个性化设置</button>
+        <button onclick="location.href='{{ url_for('select_system') }}'">系统设置</button>
+        <button onclick="location.href='{{ url_for('internet') }}'">网络检测</button>
     </div>
 </body>
 <script>
