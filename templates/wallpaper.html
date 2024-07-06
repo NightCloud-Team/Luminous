@@ -214,6 +214,13 @@
         </ul>
     </div>
     <div id="nav2">
+        <h1>壁纸设置</h1>
+        <form action="/shortcut_menu/select_personalization/wallpaper_upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required>
+            <button type="submit">上传壁纸</button>
+        </form>
+
+        <br>
         <button onclick="location.href='{{ url_for('shortcut_menu') }}'">返回</button>
     </div>
 </body>

@@ -1,6 +1,10 @@
 import flask
-from flask import Flask, redirect, url_for
-
+import os
+import ctypes
+from flask import Flask, redirect, url_for,request
+from ctypes import wintypes
+import winreg
+from luminous.windows import *
 app = flask.Flask(__name__)
 
 
@@ -20,13 +24,40 @@ def select_personalization():
 def wallpaper():
     return flask.render_template('wallpaper.html')
 
+@app.route('/shortcut_menu/select_personalization/wallpaper_upload',methods=['POST'])
+def wallpaper_upload():
+    if 'file' not in request.files:
+        return redirect(url_for('error',error='没有上传文件'))
+    file = request.files['file']
+    if file.filename == '':
+        return redirect(url_for('error',error='没有上传文件'))
+    file.save('./picture/wallpaper.jpg')
+    image_path = os.path.abspath("./picture/wallpaper.jpg")
+    ctypes.windll.user32.SystemParametersInfoW(20, 0, image_path, 3)
+    return flask.render_template('success.html')
+
 @app.route('/shortcut_menu/select_personalization/color')
 def color():
     return flask.render_template('color.html')
 
 @app.route('/shortcut_menu/select_personalization/taskbar')
 def taskbar():
-    return flask.render_template('taskbar.html')
+    
+    return flask.render_template('taskbar.html',toggle_checked_1=is_taskbar_auto_hide_enabled())
+
+@app.route('/shortcut_menu/select_personalization/taskbar_set',methods=['POST'])
+def taskbar_set():
+    option1 = request.form.get('option1')
+    option2 = request.form.get('quantity')
+    if option1 == 'on':
+        value = 1
+    else:
+        value = 0
+    
+    #print(value)
+    ctypes.windll.user32.SystemParametersInfoW(15, 0, value, 3)
+    ctypes.windll.user32.SystemParametersInfoW(82, 0, option2, 3)
+    return flask.render_template('success.html')
 
 @app.route('/shortcut_menu/select_system')
 def select_system():
@@ -49,6 +80,10 @@ def SpecialThanks():
 @app.route('/website')
 def website():
     return flask.render_template('website.html')
+
+@app.route('/error/<error>')
+def error(error):
+    return flask.render_template('error.html',error=error)
 
 
 #app.run(host='127.0.0.1', port=8000,debug=True)
