@@ -3,12 +3,20 @@
     padding: 0;
     list-style: none;
     text-decoration: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 body {
     background-image: url(https://api.vvhan.com/api/bing?rand=sj);
-    background-position: center center;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
+
 
 #nav {
     width: 910px;
@@ -45,20 +53,6 @@ ul > span {
     font-size: 24px;
 }
 
-#nav2 {
-    width: 750px;
-    height: 500px;
-    background-color: rgba(247, 249, 250, 0.7);
-    border-radius: 20px;
-    margin: 20px auto;
-    text-align: center
-}
-
-#nav2 > a {
-    text-align: right;
-    font-size: 24px;
-
-}
 
 .loader {
     background: radial-gradient(#222, #000);
@@ -172,4 +166,88 @@ ul > span {
     100% {
         transform: rotate(360deg);
     }
+}
+
+#nav2 {
+    width: 750px;
+    height: 500px;
+    background-color: rgba(247, 249, 250, 0.7);
+    border-radius: 20px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#nav2 > a {
+    text-align: right;
+    font-size: 24px;
+}
+
+#nav2 > a > em {
+    font-style: oblique;
+    font-weight: bold;
+}
+
+.button {
+    background-color: #128d09;
+    color: white;
+    width: 120px;
+    height: 45px;
+    border: 0;
+    font-size: 16px;
+    box-sizing: content-box;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 5px #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    margin: 0 25px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.button:hover {
+    background-color: #3e8e41;
+}
+
+.button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button:hover span {
+    padding-right: 25px;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+
+.center {
+    text-align: center;
 }

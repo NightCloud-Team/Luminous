@@ -8,7 +8,7 @@
 
     <title>首页</title>
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=1">
 </head>
 
 <body>
@@ -40,10 +40,10 @@
             <li><a href="{{ url_for('SpecialThanks') }}" class="fa-solid fa-user"><b>鸣谢清单</b></a></li><span></span>
         </ul>
     </div>
-    <div id="nav2">
-        <button onclick="location.href='{{ url_for('select_personalization') }}'">个性化设置</button>
-        <button onclick="location.href='{{ url_for('select_system') }}'">系统设置</button>
-        <button onclick="location.href='{{ url_for('internet') }}'">网络检测</button>
+    <div class="buttons" id="nav2">
+        <button class = "button" onclick="location.href='{{ url_for('select_personalization') }}'"><span>个性化设置</span></button>
+        <button class = "button" onclick="location.href='{{ url_for('select_system') }}'"><span>系统设置</span></button>
+        <button class = "button" onclick="location.href='{{ url_for('internet') }}'"><span>网络检测</span></button>
     </div>
 </body>
 

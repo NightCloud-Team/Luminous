@@ -33,22 +33,19 @@
     </div>
     <div id="nav">
         <ul>
-            <li><a class="fa-solid fa-house"><b>快捷菜单</b></a></li><span>|</span>
+            <li><a href="{{ url_for('shortcut_menu')}}" class="fa-solid fa-house"><b>快捷菜单</b></a></li><span>|</span>
             <li><a href="{{ url_for('systemsetting') }}" class="fa-solid fa-globe"><b>系统设置</b></a></li><span>|</span>
             <li><a href="{{ url_for('learn') }}" class="fa-solid fa-book"><b>学习</b></a></li><span>|</span>
             <li><a href="{{ url_for('softwaresetting') }}" class="fa-solid fa-xmark"><b>软件设置</b></a></li><span>|</span>
             <li><a href="{{ url_for('SpecialThanks') }}" class="fa-solid fa-user"><b>鸣谢清单</b></a></li><span></span>
         </ul>
     </div>
-    <div id="nav2">
+    <div class="buttons" id="nav2">
         <h1>壁纸设置</h1>
         <form action="/shortcut_menu/select_personalization/wallpaper_upload" method="post" enctype="multipart/form-data">
             <input type="file" name="file" accept="image/*" required>
-            <button type="submit">上传壁纸</button>
+            <button class="button" type="submit"><span>上传壁纸</span></button>
         </form>
-
-        <br>
-        <button onclick="location.href='{{ url_for('shortcut_menu') }}'">返回</button>
     </div>
 </body>
 <script>
