@@ -2,6 +2,7 @@
 import ctypes
 import sys
 from ctypes import wintypes
+import psutil#引用库
 
 ABM_GETSTATE = 0x00000004  # 获取任务栏状态的消息
 ABS_AUTOHIDE = 0x1         # 自动隐藏状态
@@ -42,3 +43,17 @@ def run_as_admin():
         params = ' '.join([sys.executable] + sys.argv)
         ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, params, None, 1)
         return False
+def close(port):
+    for proc in psutil.process_iter(['pid', 'name', 'connections']):
+        try:
+            # 检查进程的所有连接
+            for conn in proc.connections(kind='inet'):
+                if conn.laddr.port == port:
+                    print(f"终止 {proc.info['pid']} 使用 {port}")
+                    proc.terminate()
+                    proc.wait(timeout=3)
+                    print(f"结束: {proc.info['pid']}")
+                    return
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            continue
+    print(f"找不到 {port}")
