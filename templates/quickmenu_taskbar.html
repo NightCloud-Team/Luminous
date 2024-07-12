@@ -3,7 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
+
     <script src="https://kit.fontawesome.com/761bf55008.js" crossorigin="anonymous"></script>
+
     <title>首页</title>
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <style>
@@ -20,7 +22,7 @@
         }
 
         #nav {
-            width: 750px;
+            width: 910px;
             height: 72px;
             background-color: rgba(247, 249, 250, 0.7);
             border-radius: 20px;
@@ -39,6 +41,7 @@
             line-height: 72px;
             font-size: 20px;
             color: black;
+            text-align: center;
         }
 
         #nav>ul>li>a:hover {
@@ -207,13 +210,22 @@
     </div>
     <div id="nav">
         <ul>
-            <li><a class="fa-solid fa-house">快捷菜单</a></li><span>|</span>
-            <li><a href="{{ url_for('website') }}" class="fa-solid fa-globe">系统设置</a></li><span>|</span>
-            <li><a href="{{ url_for('software') }}" class="fa-solid fa-xmark">软件设置</a></li><span>|</span>
-            <li><a href="{{ url_for('SpecialThanks') }}" class="fa-solid fa-user">鸣谢清单</a></li><span></span>
+            <li><a class="fa-solid fa-house"><b>快捷菜单</b></a></li><span>|</span>
+            <li><a href="{{ url_for('systemsetting') }}" class="fa-solid fa-globe"><b>系统设置</b></a></li><span>|</span>
+            <li><a href="{{ url_for('learn') }}" class="fa-solid fa-book"><b>学习</b></a></li><span>|</span>
+            <li><a href="{{ url_for('softwaresetting') }}" class="fa-solid fa-xmark"><b>软件设置</b></a></li><span>|</span>
+            <li><a href="{{ url_for('SpecialThanks') }}" class="fa-solid fa-user"><b>鸣谢清单</b></a></li><span></span>
+            
         </ul>
     </div>
     <div id="nav2">
+        <h1>任务栏设置</h1>
+        <form action="/shortcut_menu/select_personalization/taskbar_set" method="POST">
+            <label for="checkbox1">自动隐藏任务栏:</label>
+            <input type="checkbox" id="checkbox1" {% if toggle_checked_1 %}checked{% endif %}>
+            <button type="submit">设置</button>
+        </form>
+
         <button onclick="location.href='{{ url_for('shortcut_menu') }}'">返回</button>
     </div>
 </body>

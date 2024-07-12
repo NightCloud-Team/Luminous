@@ -1,56 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
-    <title>软件屏蔽设置</title>
-    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
     <script src="https://kit.fontawesome.com/761bf55008.js" crossorigin="anonymous"></script>
+
+    <title>首页</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            text-decoration: none;
-            font-weight: 520px;
-        }
-        body {
-            background-image: url(https://api.vvhan.com/api/bing?rand=sj);
-            background-position: center center;
-        }
-        #nav {
-            width: 750px;
-            height: 72px;
-            background-color: rgba(247, 249, 250, 0.7);
-            border-radius: 20px;
-            margin: 20px auto;
-        }
- 
-        #nav>ul>li {
-            float: left;
-            width: 175.75px;
-            height: 72px;
-            text-align: center;
-        }
- 
-        #nav>ul>li>a {
-            text-align: center;
-            line-height: 72px;
-            font-size: 20px;
-            color: black;
-        }
- 
-        #nav>ul>li>a:hover {
-            color: orange;
-        }
- 
-        ul>span {
-            float: left;
-            line-height: 72px;
-            color: rgb(116, 116, 116);
-            font-weight: 800;
-            font-size: 24px;
-        }
-        .loader {
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-decoration: none;
+    }
+
+    body {
+        background-image: url(https://api.vvhan.com/api/bing?rand=sj);
+        background-position: center center;
+    }
+
+    #nav {
+        width: 910px;
+        height: 72px;
+        background-color: rgba(247, 249, 250, 0.7);
+        border-radius: 20px;
+        margin: 20px auto;
+    }
+
+    #nav>ul>li {
+        float: left;
+        width: 175.75px;
+        height: 72px;
+        text-align: center;
+    }
+
+    #nav>ul>li>a {
+        text-align: center;
+        line-height: 72px;
+        font-size: 20px;
+        color: black;
+        text-align: center;
+    }
+
+    #nav>ul>li>a:hover {
+        color: orange;
+    }
+
+    ul>span {
+        float: left;
+        line-height: 72px;
+        color: rgb(116, 116, 116);
+        font-weight: 800;
+        font-size: 24px;
+    }
+
+    #nav2 {
+        width: 750px;
+        height: 500px;
+        background-color: rgba(247, 249, 250, 0.7);
+        border-radius: 20px;
+        margin: 20px auto;
+        text-align: center
+    }
+
+    #nav2>a {
+        text-align: right;
+        font-size: 24px;
+
+    }
+
+    .loader {
         background: radial-gradient(#222, #000);
         bottom: 0;
         left: 0;
@@ -73,9 +94,9 @@
     }
 
     .loader-line-wrap {
-        animation: 
-            spin 2000ms cubic-bezier(.175, .885, .32, 1.275) infinite
-        ;
+        animation:
+                spin 2000ms cubic-bezier(.175, .885, .32, 1.275) infinite
+    ;
         box-sizing: border-box;
         height: 50px;
         left: 0;
@@ -144,6 +165,7 @@
     }
     </style>
 </head>
+
 <body>
     <div class="loader">
         <div class="loader-inner">
@@ -166,16 +188,25 @@
     </div>
     <div id="nav">
         <ul>
-            <li><a href="{{ url_for('index') }}" class="fa-solid fa-house">快捷菜单</a></li><span>|</span>
-            <li><a href="{{ url_for('website') }}" class="fa-solid fa-globe">系统设置</a></li><span>|</span>
-            <li><a class="fa-solid fa-xmark">软件设置</a></li><span>|</span>
-            <li><a href="{{ url_for('SpecialThanks') }}" class="fa-solid fa-user">鸣谢清单</a></li><span></span>
+            <li><a  class="fa-solid fa-house"><b>快捷菜单</b></a></li><span>|</span>
+            <li><a href="{{ url_for('systemsetting') }}" class="fa-solid fa-globe"><b>系统设置</b></a></li><span>|</span>
+            <li><a href="{{ url_for('learn') }}" class="fa-solid fa-book"><b>学习</b></a></li><span>|</span>
+            <li><a href="{{ url_for('softwaresetting') }}" class="fa-solid fa-xmark"><b>软件设置</b></a></li><span>|</span>
+            <li><a href="{{ url_for('SpecialThanks') }}" class="fa-solid fa-user"><b>鸣谢清单</b></a></li><span></span>
         </ul>
     </div>
+    <div id="nav2">
+        <button onclick="location.href='{{ url_for('select_personalization') }}'">个性化设置</button>
+        <button onclick="location.href='{{ url_for('select_system') }}'">系统设置</button>
+        <button onclick="location.href='{{ url_for('internet') }}'">网络检测</button>
+    </div>
 </body>
+
 <script>
     $(window).on("load", function () {
         $(".loader").fadeOut("slow");
     })
 </script>
+
+
 </html>

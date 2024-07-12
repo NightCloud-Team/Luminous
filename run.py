@@ -125,7 +125,7 @@ if __name__ == "__main__":
     subprocess.Popen("python web_ui.py", cwd = path)
     #subprocess.Popen("python manage.py runserver 127.0.0.1:8000", cwd = path)
     #ui_web = subprocess.Popen("python web_ui.py", cwd = path)
-    high = 800
+    high = 1000
     width = 655
     app = QtWidgets.QApplication(sys.argv)
     ui = Ui_MainWindow(high,width)

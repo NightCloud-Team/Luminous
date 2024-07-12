@@ -1,26 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
-    <title>特别鸣谢</title>
-    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
     <script src="https://kit.fontawesome.com/761bf55008.js" crossorigin="anonymous"></script>
+
+    <title>首页</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <style>
         * {
             margin: 0;
             padding: 0;
             list-style: none;
             text-decoration: none;
-            font-weight: 520px;
         }
+
         body {
             background-image: url(https://api.vvhan.com/api/bing?rand=sj);
             background-position: center center;
         }
 
         #nav {
-            width: 750px;
+            width: 910px;
             height: 72px;
             background-color: rgba(247, 249, 250, 0.7);
             border-radius: 20px;
@@ -39,6 +41,7 @@
             line-height: 72px;
             font-size: 20px;
             color: black;
+            text-align: center;
         }
 
         #nav>ul>li>a:hover {
@@ -51,6 +54,21 @@
             color: rgb(116, 116, 116);
             font-weight: 800;
             font-size: 24px;
+        }
+
+        #nav2 {
+            width: 750px;
+            height: 500px;
+            background-color: rgba(247, 249, 250, 0.7);
+            border-radius: 20px;
+            margin: 20px auto;
+            text-align: center
+        }
+
+        #nav2>a {
+            text-align: right;
+            font-size: 24px;
+
         }
 
         .loader {
@@ -167,25 +185,6 @@
                 transform: rotate(360deg);
             }
         }
-
-        #nav2 {
-            width: 750px;
-            height: 500px;
-            background-color: rgba(247, 249, 250, 0.7);
-            border-radius: 20px;
-            margin: 20px auto;
-            text-align: center;
-        }
-
-        #nav2>a {
-            text-align: right;
-            font-size: 24px;
-
-        }
-        #nav2>a>em{
-            font-style:oblique;
-            font-weight: bold;
-        }
     </style>
 </head>
 
@@ -211,10 +210,11 @@
     </div>
     <div id="nav">
         <ul>
-            <li><a href="{{ url_for('index') }}" class="fa-solid fa-house">快捷菜单</a></li><span>|</span>
-            <li><a href="{{ url_for('website') }}" class="fa-solid fa-globe">系统设置</a></li><span>|</span>
-            <li><a href="{{ url_for('software') }}" class="fa-solid fa-xmark">软件设置</a></li><span>|</span>
-            <li><a class="fa-solid fa-user">鸣谢清单</a></li><span></span>
+            <li><a herf="{{url_for('quickmenu')}}" class="fa-solid fa-house"><b>快捷菜单</b></a></li><span>|</span>
+            <li><a herf="{{url_for('systemsetting')}}" class="fa-solid fa-globe"><b>系统设置</b></a></li><span>|</span>
+            <li><a href="{{ url_for('learn') }}" class="fa-solid fa-book"><b>学习</b></a></li><span>|</span>
+            <li><a href="{{ url_for('softwaresetting') }}" class="fa-solid fa-xmark"><b>软件设置</b></a></li><span>|</span>
+            <li><a class="fa-solid fa-user"><b>鸣谢清单</b></a></li><span></span>
         </ul>
     </div>
 

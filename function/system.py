@@ -1,6 +1,8 @@
 
 import ctypes
+import sys
 from ctypes import wintypes
+
 ABM_GETSTATE = 0x00000004  # 获取任务栏状态的消息
 ABS_AUTOHIDE = 0x1         # 自动隐藏状态
 
@@ -28,8 +30,7 @@ def is_taskbar_auto_hide_enabled():
     else:
         print("任务栏在桌面模式下自动隐藏已禁用。")
         return False
-import ctypes
-import sys
+
 
 def run_as_admin():
     if ctypes.windll.shell32.IsUserAnAdmin() != 0:
