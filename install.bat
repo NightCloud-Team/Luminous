@@ -3,3 +3,4 @@ python -m pip install paddlepaddle==2.6.1 -i https://pypi.tuna.tsinghua.edu.cn/s
 pip install PyQtWebEngine
 pip install flask
 pip install pyautogui
+pip install opencv
