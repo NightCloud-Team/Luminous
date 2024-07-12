@@ -18,13 +18,15 @@ import os
 from PyQt5 import QtWebEngineWidgets
 import signal
 import atexit
+from function.system import *
 #subprocess.run(["python", "manage.py","runserver","127.0.0.1:8000"])
 class Ui_MainWindow(QtWidgets.QMainWindow):
-    def __init__(self,high,width):
+    def __init__(self,high,width,port):
         super().__init__()
         self.setWindowTitle("微光-Luminous")
         self.setFixedSize(high, width)
         self.setWindowIcon(QtGui.QIcon("luminous_logo.png"))
+        self.port = port
         #ui_web = subprocess.Popen("python web_ui.py", cwd = path)
         #self.process = ui_web
 
@@ -68,6 +70,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         # if self.process.poll() != 0:
         #     self.process.kill()
         print("关闭窗口")
+        close(self.port)
         event.accept()
 # class Ui_MainWindow(QMainWindow):
 #     def __init__(self):
@@ -130,7 +133,7 @@ if __name__ == "__main__":
     high = 1280
     width = 720
     app = QtWidgets.QApplication(sys.argv)
-    ui = Ui_MainWindow(high,width)
+    ui = Ui_MainWindow(high,width,8000)
     ui.show()
     #=app.exec_()
     sys.exit(app.exec_())
