@@ -19,6 +19,7 @@ from PyQt5 import QtWebEngineWidgets
 import signal
 import atexit
 from function.system import *
+import urllib.request
 #subprocess.run(["python", "manage.py","runserver","127.0.0.1:8000"])
 class Ui_MainWindow(QtWidgets.QMainWindow):
     def __init__(self,high,width,port):
@@ -70,6 +71,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         # if self.process.poll() != 0:
         #     self.process.kill()
         print("关闭窗口")
+        urllib.request.urlopen("http://127.0.0.1:8000/clean")
         close(self.port)
         event.accept()
 # class Ui_MainWindow(QMainWindow):

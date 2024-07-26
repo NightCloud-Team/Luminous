@@ -6,8 +6,15 @@ from ctypes import wintypes
 import winreg
 import subprocess
 from function.system import *
+from flask_caching import Cache
+
 app = flask.Flask(__name__)
 
+app.config['CACHE_TYPE'] = 'simple'  # 使用内存缓存
+app.config['CACHE_DEFAULT_TIMEOUT'] = 300  # 设置默认超时时间为300秒
+
+# 初始化缓存
+cache = Cache(app)
 
 @app.route('/')
 def index():
@@ -17,6 +24,7 @@ def index():
 
 
 @app.route('/shortcut_menu')
+@cache.cached(timeout=60)
 def shortcut_menu():
     return flask.render_template('quickmenu.html')#
 
@@ -24,6 +32,7 @@ def shortcut_menu():
 
 
 @app.route('/shortcut_menu/select_personalization')
+@cache.cached(timeout=60)
 def select_personalization():
     return flask.render_template('quickmenu_personalization.html')#
 
@@ -31,6 +40,7 @@ def select_personalization():
 
 
 @app.route('/shortcut_menu/select_personalization/wallpaper')
+@cache.cached(timeout=60)
 def wallpaper():
     return flask.render_template('wallpaper.html')#
 
@@ -53,6 +63,7 @@ def wallpaper_upload():
 
 
 @app.route('/shortcut_menu/select_personalization/color')
+@cache.cached(timeout=60)
 def color():
     return flask.render_template('quickmenu_color.html')#
 
@@ -60,6 +71,7 @@ def color():
 
 
 @app.route('/shortcut_menu/select_personalization/taskbar')
+@cache.cached(timeout=60)
 def taskbar():
     return flask.render_template('quickmenu_taskbar.html',toggle_checked_1=is_taskbar_auto_hide_enabled())#
 
@@ -67,6 +79,7 @@ def taskbar():
 
 
 @app.route('/shortcut_menu/select_personalization/taskbar_set',methods=['POST'])
+@cache.cached(timeout=60)
 def taskbar_set():
     option1 = request.form.get('option1')
     path_1 = os.path.abspath("./Turn_ON_auto-hide_taskbar.bat")
@@ -84,6 +97,7 @@ def taskbar_set():
 
 
 @app.route('/shortcut_menu/select_system')
+@cache.cached(timeout=60)
 def select_system():
     return flask.render_template('quickmenu_system.html')#
 
@@ -91,6 +105,7 @@ def select_system():
 
 
 @app.route('/shortcut_menu/internet')
+@cache.cached(timeout=60)
 def internet():
     #功能待实现-显示\检测当前网络连接情况
     return flask.render_template('quickmenu_internet.html')#
@@ -99,6 +114,7 @@ def internet():
 
 
 @app.route('/softwaresetting')
+@cache.cached(timeout=60)
 def softwaresetting():
     return flask.render_template('softwaresetting.html')#
 
@@ -106,6 +122,7 @@ def softwaresetting():
 
 
 @app.route('/SpecialThanks')
+@cache.cached(timeout=60)
 def SpecialThanks():
     return flask.render_template('SpecialThanks.html')#
 
@@ -113,6 +130,7 @@ def SpecialThanks():
 
 
 @app.route('/learn')
+@cache.cached(timeout=60)
 def learn():
     return flask.render_template('learn.html')#
 
@@ -120,6 +138,7 @@ def learn():
 
 
 @app.route('/systemsetting')
+@cache.cached(timeout=60)
 def systemsetting():
     return flask.render_template('systemsetting.html')#
 
@@ -129,6 +148,13 @@ def systemsetting():
 @app.route('/error/<error>')
 def error(error):
     return flask.render_template('error.html',error=error)
+
+
+
+@app.route('/clean')
+def clean():
+    cache.clear()
+    return "关闭"
 
 
 

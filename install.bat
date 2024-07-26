@@ -4,3 +4,4 @@ pip install PyQtWebEngine
 pip install flask
 pip install pyautogui
 pip install opencv
+pip install flask_caching
