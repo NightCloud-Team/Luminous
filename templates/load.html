@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8" />
+
+    <script src="https://kit.fontawesome.com/761bf55008.js" crossorigin="anonymous"></script>
+
+    <title>首页</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+
+<body>
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    $(window).on("load", function () {
+            // 延迟1秒执行淡出动画和跳转
+            setTimeout(function () {
+                $(".loader").fadeOut("slow", function () {
+                    window.location.href = "{{ url_for('shortcut_menu') }}";
+                });
+            }, 1000);
+        });
+
+</script>
+
+
+</html>

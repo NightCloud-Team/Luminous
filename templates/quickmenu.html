@@ -12,25 +12,6 @@
 </head>
 
 <body>
-    <div class="loader">
-        <div class="loader-inner">
-            <div class="loader-line-wrap">
-                <div class="loader-line"></div>
-            </div>
-            <div class="loader-line-wrap">
-                <div class="loader-line"></div>
-            </div>
-            <div class="loader-line-wrap">
-                <div class="loader-line"></div>
-            </div>
-            <div class="loader-line-wrap">
-                <div class="loader-line"></div>
-            </div>
-            <div class="loader-line-wrap">
-                <div class="loader-line"></div>
-            </div>
-        </div>
-    </div>
     <div id="nav">
         <ul>
             <li><a class="fa-solid fa-house"><b>快捷菜单</b></a></li><span>|</span>
@@ -46,12 +27,6 @@
         <button class = "button" onclick="location.href='{{ url_for('internet') }}'"><span>网络检测</span></button>
     </div>
 </body>
-
-<script>
-    $(window).on("load", function () {
-        $(".loader").fadeOut("slow");
-    })
-</script>
 
 
 </html>

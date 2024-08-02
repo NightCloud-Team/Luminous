@@ -10,7 +10,8 @@ from flask_caching import Cache
 
 app = flask.Flask(__name__)
 
-app.config['CACHE_TYPE'] = 'simple'  # 使用内存缓存
+app.config['CACHE_TYPE'] = 'filesystem'
+app.config['CACHE_DIR'] = './tmp/flask_cache'
 app.config['CACHE_DEFAULT_TIMEOUT'] = 300  # 设置默认超时时间为300秒
 
 # 初始化缓存
@@ -18,7 +19,7 @@ cache = Cache(app)
 
 @app.route('/')
 def index():
-    return redirect(url_for('shortcut_menu'))#
+    return flask.render_template('quickmenu.html')#
 
 
 

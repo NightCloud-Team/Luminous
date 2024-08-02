@@ -12,25 +12,6 @@
 </head>
 
 <body>
-    <div class="loader">
-        <div class="loader-inner">
-            <div class="loader-line-wrap">
-                <div class="loader-line"></div>
-            </div>
-            <div class="loader-line-wrap">
-                <div class="loader-line"></div>
-            </div>
-            <div class="loader-line-wrap">
-                <div class="loader-line"></div>
-            </div>
-            <div class="loader-line-wrap">
-                <div class="loader-line"></div>
-            </div>
-            <div class="loader-line-wrap">
-                <div class="loader-line"></div>
-            </div>
-        </div>
-    </div>
     <div id="nav">
         <ul>
             <li><a href="{{ url_for('shortcut_menu') }}" class="fa-solid fa-house"><b>快捷菜单</b></a></li><span>|</span>
@@ -56,10 +37,5 @@
     </div>
 
 </body>
-<script>
-    $(window).on("load", function () {
-        $(".loader").fadeOut("slow");
-    })
-</script>
 
 </html>
