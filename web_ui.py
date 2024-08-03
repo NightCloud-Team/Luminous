@@ -1,12 +1,13 @@
 import flask
 import os
 import ctypes
-from flask import Flask, redirect, url_for,request
+from flask import Flask, redirect, url_for,request,jsonify
 from ctypes import wintypes
 import winreg
 import subprocess
 from function.system import *
 from flask_caching import Cache
+import threading
 
 app = flask.Flask(__name__)
 
@@ -149,6 +150,64 @@ def systemsetting():
 @app.route('/error/<error>')
 def error(error):
     return flask.render_template('error.html',error=error)
+
+
+
+
+
+
+
+
+######################################################
+#====================================================#
+#                      功 能 区                       #
+#====================================================#
+######################################################
+
+@app.route('/fix_web')
+def fix_web():
+    thread = threading.Thread(target=windows_web)
+    thread.start()
+    return flask.render_template('custom.html',custom = "按照提示完成检测")#
+
+
+
+    # web_error = []
+
+
+    # result = subprocess.run(['netsh', 'interface', 'show', 'interface'], capture_output=True, text=True)
+    # adapters = []
+    # for line in result.stdout.splitlines():
+    #     if "已连接" in line or "已断开" in line:
+    #         parts = line.split()
+    #         adapter_status = parts[-1]
+    #         adapter_name = " ".join(parts[3:-1])
+    #         adapters.append((adapter_name, adapter_status))
+        
+    #     else:
+    #         web_error.append
+    # yield jsonify({"status": "task1_completed"}), '\n'
+
+    # pass
+    # yield jsonify({"status": "task1_completed"}), '\n'
+ 
+    # pass
+    # yield jsonify({"status": "task1_completed"}), '\n'
+
+    # pass
+    # yield jsonify({"status": "task1_completed"}), '\n'
+
+    # pass
+    # yield jsonify({"status": "task1_completed"}), '\n'
+
+    # pass
+    # yield jsonify({"status": "task1_completed"}), '\n'
+
+    # pass
+    # yield jsonify({"status": "task1_completed"}), '\n'
+
+    # pass
+    # yield jsonify({"status": "task1_completed"}), '\n'
 
 
 

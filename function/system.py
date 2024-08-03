@@ -3,6 +3,7 @@ import ctypes
 import sys
 from ctypes import wintypes
 import psutil#引用库
+import subprocess
 
 ABM_GETSTATE = 0x00000004  # 获取任务栏状态的消息
 ABS_AUTOHIDE = 0x1         # 自动隐藏状态
@@ -57,3 +58,6 @@ def close(port):
         except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
             continue
     print(f"找不到 {port}")
+
+def windows_web():
+    subprocess.run(["msdt", "/id", "NetworkDiagnosticsNetworkAdapter"], check=True)

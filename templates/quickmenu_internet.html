@@ -9,6 +9,33 @@
     <title>首页</title>
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    }
+    
+    .progress-container {
+    width: 100%;
+    background-color: #f3f3f3;
+    border-radius: 25px;
+    box-shadow: 0 3px 3px -5px #000, 0 2px 5px #ccc;
+    margin: 20px 0;
+    overflow: hidden;
+    }
+    
+    .progress-bar {
+    height: 30px;
+    width: 0;
+    background-color: #4caf50;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    border-radius: 25px;
+    transition: width 0.25s;
+    }
+    
+    </style>
 </head>
 
 <body>
@@ -21,8 +48,43 @@
             <li><a href="{{ url_for('SpecialThanks') }}" class="fa-solid fa-user"><b>鸣谢清单</b></a></li><span></span>
         </ul>
     </div>
-    <div id="nav2">
+    <div class="buttons" id="nav2">
+        <button class="button" onclick="location.href='{{ url_for('fix_web') }}'"><span>检测</span></button>
+        <!-- <div class="progress-container">
+            <div class="progress-bar" id="progressBar">0%</div>
+        </div> -->
     </div>
 </body>
+<!-- <script>
+    let progressBar = document.getElementById('progressBar');
+    let progress = 0;
+    let interval;
+
+    async function callBackendTask(task) {
+            const response = await fetch(task);
+            const data = await response.json();
+            if (data.status) {
+                updateProgress();
+            }
+        }
+
+    function updateProgress() {
+        if (progress < 100) {
+            progress += 10;
+            progressBar.style.width = progress + '%';
+            progressBar.innerHTML = progress + '%';
+        } else {
+            clearInterval(interval);
+            alert('加载完成！');
+        }
+    }
+
+    function startProgress() {
+        progress = 0;
+        progressBar.style.width = '0%';
+        progressBar.innerHTML = '0%';
+        
+    }
+</script> -->
 
 </html>
