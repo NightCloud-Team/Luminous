@@ -19,7 +19,7 @@ cache = Cache(app)
 
 @app.route('/')
 def index():
-    return flask.render_template('quickmenu.html')#
+    return flask.render_template('load.html')#
 
 
 
