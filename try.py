@@ -188,3 +188,4 @@ import subprocess
 import sys
 
 install()
+open_file()
