@@ -1,13 +1,19 @@
 import flask
 import os
 import ctypes
-from flask import Flask, redirect, url_for,request
+from flask import Flask, redirect, url_for,request,send_from_directory
 from ctypes import wintypes
 import winreg
 import subprocess
 from function.system import *
 app = flask.Flask(__name__)
 
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(
+        app.static_folder, 'favicon.ico', mimetype='image/vnd.microsoft.icon'
+    )
 
 @app.route('/')
 def index():
