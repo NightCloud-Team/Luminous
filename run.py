@@ -16,7 +16,6 @@ import subprocess
 import pathlib
 import threading
 import os
-
 import signal
 import atexit
 from function.system import *

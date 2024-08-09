@@ -182,4 +182,9 @@
 # '''
 
 from function.teach import *
-find_window()
+from function.system import *
+import ctypes
+import subprocess
+import sys
+
+install()
