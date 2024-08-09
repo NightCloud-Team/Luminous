@@ -3,6 +3,9 @@ import ctypes
 import sys
 from ctypes import wintypes
 import psutil#引用库
+import subprocess
+import win32gui
+import win32con
 
 ABM_GETSTATE = 0x00000004  # 获取任务栏状态的消息
 ABS_AUTOHIDE = 0x1         # 自动隐藏状态
@@ -57,3 +60,22 @@ def close(port):
         except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
             continue
     print(f"找不到 {port}")
+
+def windows_fix_web():
+    subprocess.run(["msdt", "/id", "NetworkDiagnosticsNetworkAdapter"], check=True)
+
+def open_file():
+    flags = win32con.OFN_FILEMUSTEXIST | win32con.OFN_HIDEREADONLY
+    file_dialog = win32gui.GetOpenFileNameW(InitialDir='C:\\', Flags=flags)
+    print(file_dialog)
+
+def install():
+    if ctypes.windll.shell32.IsUserAnAdmin() != 0:
+        result = subprocess.run(["powershell Install-Module -Name PSReadLine -Force -SkipPublisherCheck"])
+        print(result.stdout)
+        # 如果已经是管理员，直接运行
+    else:
+        # 如果不是管理员，使用ShellExecute以管理员权限重新运行
+        params = ' '.join([sys.executable] + sys.argv)
+        ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, params, None, 1)
+    #subprocess.run(["runas" , "/user:Administrator" , "'powershell Install-Module -Name PSReadLine -Force -SkipPublisherCheck'"])

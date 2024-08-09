@@ -1,0 +1,22 @@
+[CORE]
+core_version="3.0"
+
+[DATA_NODE.DATA_NODE_1]
+storage_type = "pickle"
+scope = "SCENARIO:SCOPE"
+
+[TASK.TASK_1]
+inputs = [ "DATA_NODE_1:SECTION" ]
+outputs = [ ]
+function = ""
+skippable = "False:bool"
+
+[TASK.users]
+inputs = [ "DATA_NODE_1:SECTION" ]
+outputs = [ ]
+function = ""
+skippable = "False:bool"
+
+[SCENARIO.a]
+additional_data_nodes = [ "DATA_NODE_1:SECTION" ]
+tasks = [ ]

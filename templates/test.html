@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Progress Bar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: #f3f3f3;
+            border-radius: 25px;
+            box-shadow: 0 3px 3px -5px #000, 0 2px 5px #ccc;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 30px;
+            width: 0;
+            background-color: #4caf50;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            border-radius: 25px;
+            transition: width 0.25s;
+        }
+
+        .button-container {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>页面加载进度条</h1>
+    <div class="button-container">
+        <button onclick="startProgress()">开始加载</button>
+    </div>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar">0%</div>
+    </div>
+
+    <script>
+        let progressBar = document.getElementById('progressBar');
+        let progress = 0;
+        let interval;
+
+        function updateProgress() {
+            if (progress < 100) {
+                progress += 10;
+                progressBar.style.width = progress + '%';
+                progressBar.innerHTML = progress + '%';
+            } else {
+                clearInterval(interval);
+                alert('加载完成！');
+            }
+        }
+
+        function startProgress() {
+            progress = 0;
+            progressBar.style.width = '0%';
+            progressBar.innerHTML = '0%';
+            interval = setInterval(updateProgress, 1000); // 每秒更新一次进度
+        }
+    </script>
+</body>
+
+</html>

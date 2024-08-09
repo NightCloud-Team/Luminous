@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+
+    <script src="https://kit.fontawesome.com/761bf55008.js" crossorigin="anonymous"></script>
+
+    <title>首页</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: #f3f3f3;
+            border-radius: 25px;
+            box-shadow: 0 3px 3px -5px #000, 0 2px 5px #ccc;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 30px;
+            width: 0;
+            background-color: #4caf50;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            border-radius: 25px;
+            transition: width 0.25s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="nav">
+        <ul>
+            <li><a href="{{url_for('shortcut_menu')}}" class="fa-solid fa-house"><b>快捷菜单</b></a></li><span>|</span>
+            <li><a href="{{ url_for('systemsetting') }}" class="fa-solid fa-globe"><b>系统设置</b></a></li><span>|</span>
+            <li><a href="{{ url_for('learn') }}" class="fa-solid fa-book"><b>学习</b></a></li><span>|</span>
+            <li><a href="{{ url_for('softwaresetting') }}" class="fa-solid fa-xmark"><b>软件设置</b></a></li><span>|</span>
+            <li><a href="{{ url_for('SpecialThanks') }}" class="fa-solid fa-user"><b>鸣谢清单</b></a></li><span></span>
+        </ul>
+    </div>
+    <div class="buttons" id="nav2">
+        <h1>{{ custom }}</h1>
+    </div>
+</body>
+
+</html>

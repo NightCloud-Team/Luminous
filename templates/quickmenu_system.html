@@ -12,28 +12,9 @@
 </head>
 
 <body>
-    <div class="loader">
-        <div class="loader-inner">
-            <div class="loader-line-wrap">
-                <div class="loader-line"></div>
-            </div>
-            <div class="loader-line-wrap">
-                <div class="loader-line"></div>
-            </div>
-            <div class="loader-line-wrap">
-                <div class="loader-line"></div>
-            </div>
-            <div class="loader-line-wrap">
-                <div class="loader-line"></div>
-            </div>
-            <div class="loader-line-wrap">
-                <div class="loader-line"></div>
-            </div>
-        </div>
-    </div>
     <div id="nav">
         <ul>
-            <li><a class="fa-solid fa-house"><b>快捷菜单</b></a></li><span>|</span>
+            <li><a href="{{url_for('shortcut_menu')}}" class="fa-solid fa-house"><b>快捷菜单</b></a></li><span>|</span>
             <li><a href="{{ url_for('systemsetting') }}" class="fa-solid fa-globe"><b>系统设置</b></a></li><span>|</span>
             <li><a href="{{ url_for('learn') }}" class="fa-solid fa-book"><b>学习</b></a></li><span>|</span>
             <li><a href="{{ url_for('softwaresetting') }}" class="fa-solid fa-xmark"><b>软件设置</b></a></li><span>|</span>
@@ -41,13 +22,8 @@
         </ul>
     </div>
     <div id="nav2">
-        <button onclick="location.href='{{ url_for('shortcut_menu') }}'">返回</button>
     </div>
 </body>
-<script>
-    $(window).on("load", function () {
-        $(".loader").fadeOut("slow");
-    })
-</script>
+
 
 </html>
