@@ -18,6 +18,12 @@ app.config['CACHE_DEFAULT_TIMEOUT'] = 300  # 设置默认超时时间为300秒
 # 初始化缓存
 cache = Cache(app)
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(
+        app.static_folder, 'favicon.ico', mimetype='image/vnd.microsoft.icon'
+    )
+
 @app.route('/')
 def index():
     return flask.render_template('load.html')#
