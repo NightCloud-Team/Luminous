@@ -142,4 +142,24 @@ def main(appid, api_key, api_secret, Spark_url,domain, question):
     ws.domain = domain
     ws.run_forever(sslopt={"cert_reqs": ssl.CERT_NONE})
 
+def getText(text,role,content):
+    jsoncon = {}
+    jsoncon["role"] = role
+    jsoncon["content"] = content
+    text.append(jsoncon)
+    return text
+
+def getlength(text):
+    length = 0
+    for content in text:
+        temp = content["content"]
+        leng = len(temp)
+        length += leng
+    return length
+
+def checklen(text):
+    while (getlength(text) > 8000):
+        del text[0]
+    return text
+
 

@@ -11,15 +11,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=1">
     <style>
         /* styles.css */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
+
 
 .chat-container {
     width: 400px;
@@ -96,8 +88,8 @@ body {
                 <!-- Messages will be appended here -->
             </div>
             <div class="input-area">
-                <input type="text" id="user-input" placeholder="Type your message here...">
-                <button id="send-button">Send</button>
+                <input type="text" id="user-input" placeholder="输入你的需求">
+                <button id="send-button">发送</button>
             </div>
         </div>
     </div>
@@ -121,10 +113,22 @@ body {
             inputField.value = "";
 
             // Simulate bot response
-            setTimeout(() => {
-                const botResponse = "This is a simulated response.";
-                appendMessage("bot", botResponse);
-            }, 1000);
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: messageText })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Append the bot response to the chat
+                appendMessage("bot", data.response);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                appendMessage("bot", "An error occurred. Please try again.");
+            });
         }
 
         function appendMessage(sender, text) {

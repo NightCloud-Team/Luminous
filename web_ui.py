@@ -8,6 +8,9 @@ import subprocess
 from function.system import *
 from flask_caching import Cache
 import threading
+from function.SparkApi import *
+from function import SparkApi
+
 
 app = flask.Flask(__name__)
 
@@ -18,15 +21,15 @@ app.config['CACHE_DEFAULT_TIMEOUT'] = 300  # 设置默认超时时间为300秒
 # 初始化缓存
 cache = Cache(app)
 
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(
-        app.static_folder, 'favicon.ico', mimetype='image/vnd.microsoft.icon'
-    )
+# @app.route('/favicon.ico')
+# def favicon():
+#     return send_from_directory(
+#         app.static_folder, 'favicon.ico', mimetype='image/vnd.microsoft.icon'
+#     )
 
 @app.route('/')
 def index():
-    return flask.render_template('load.html')#
+    return flask.render_template('load_AI.html')#
 
 
 
@@ -229,11 +232,27 @@ def wallpaper_upload():
 
 
 
-@app.route("/AI")
+@app.route("/chat", methods=["POST"])
 def AI():
-    pass
+    appid = "91f141e6"
+    api_secret = "Y2I0YjMxNzc2MjUwYTFkMTM1OWM5NGQ4"
+    api_key ="a486bc27629c79308e2b06975ef46d41"
+    domain = "general"
+    Spark_url = "wss://spark-api.xf-yun.com/v1.1/chat"
+    question = request.get_json()
+    print(question)
+    user_message = question.get('message')
+    text = []
+    question = checklen(getText(text,"user",user_message))
+
+    SparkApi.answer =""
+    SparkApi.main(appid,api_key,api_secret,Spark_url,domain,question)
 
 
+
+
+
+    return jsonify({'response': SparkApi.answer})
         
 
 @app.route('/clean')

@@ -2,15 +2,11 @@
 import SparkApi
 import time
 #以下密钥信息从控制台获取   https://console.xfyun.cn/services/bm35
-appid = "XXXXXXXX"     #填写控制台中获取的 APPID 信息
-api_secret = "XXXXXXXXXXXXXXXXXXXXXXXX"   #填写控制台中获取的 APISecret 信息
-api_key ="XXXXXXXXXXXXXXXXXXXXXXXX"    #填写控制台中获取的 APIKey 信息
-
-domain = "generalv3.5"      # Max版本
-#domain = "generalv3"       # Pro版本
-#domain = "general"         # Lite版本
-
-Spark_url = "wss://spark-api.xf-yun.com/v3.5/chat"   # Max服务地址
+appid = "91f141e6"
+api_secret = "Y2I0YjMxNzc2MjUwYTFkMTM1OWM5NGQ4"
+api_key ="a486bc27629c79308e2b06975ef46d41"
+domain = "general"
+Spark_url = "wss://spark-api.xf-yun.com/v1.1/chat"   # Max服务地址
 #Spark_url = "wss://spark-api.xf-yun.com/v3.1/chat"  # Pro服务地址
 #Spark_url = "wss://spark-api.xf-yun.com/v1.1/chat"  # Lite服务地址
 
@@ -54,7 +50,7 @@ if __name__ == '__main__':
         SparkApi.answer =""
         print("星火:",end ="")
         SparkApi.main(appid,api_key,api_secret,Spark_url,domain,question)
-        # print(SparkApi.answer)
+        print(SparkApi.answer)
         getText("assistant",SparkApi.answer)
 
 
