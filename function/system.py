@@ -67,7 +67,7 @@ def windows_fix_web():
 def open_file():
     flags = win32con.OFN_FILEMUSTEXIST | win32con.OFN_HIDEREADONLY
     file_dialog = win32gui.GetOpenFileNameW(InitialDir='C:\\', Flags=flags)
-    print(file_dialog)
+    return file_dialog[0]
 
 def install():
     if ctypes.windll.shell32.IsUserAnAdmin() != 0:
@@ -78,4 +78,4 @@ def install():
         # 如果不是管理员，使用ShellExecute以管理员权限重新运行
         params = ' '.join([sys.executable] + sys.argv)
         ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, params, None, 1)
-    #subprocess.run(["runas" , "/user:Administrator" , "'powershell Install-Module -Name PSReadLine -Force -SkipPublisherCheck'"])
+    #subprocess.run(["runas" , "/user:Administrator" , "'powershell Install-Module -Name PSReadLine -Force -SkipPublisherCheck'"])demo.sln

@@ -28,7 +28,7 @@ def index():
 @app.route('/shortcut_menu')
 @cache.cached(timeout=60)
 def shortcut_menu():
-    return flask.render_template('quickmenu.html')#
+    return flask.render_template('quickmenu_AI.html')#
 
 
 
@@ -49,17 +49,7 @@ def wallpaper():
 
 
 
-@app.route('/shortcut_menu/select_personalization/wallpaper_upload',methods=['POST'])
-def wallpaper_upload():
-    if 'file' not in request.files:
-        return redirect(url_for('error',error='没有上传文件'))
-    file = request.files['file']
-    if file.filename == '':
-        return redirect(url_for('error',error='没有上传文件'))
-    file.save('./picture/wallpaper.jpg')
-    image_path = os.path.abspath("./picture/wallpaper.jpg")
-    ctypes.windll.user32.SystemParametersInfoW(20, 0, image_path, 3)
-    return flask.render_template('success.html')#
+
 
 
 
@@ -209,7 +199,36 @@ def fix_web():
     # pass
     # yield jsonify({"status": "task1_completed"}), '\n'
 
+@app.route("/select_file",methods = ['post'])
+def select_file():
+    file = open_file()
+    return file
 
+
+
+
+@app.route('/shortcut_menu/select_personalization/wallpaper_upload',methods=['POST'])
+def wallpaper_upload():
+    # if 'file' not in request.files:
+    #     return redirect(url_for('error',error='没有上传文件'))
+    # file = request.files['file']
+    # if file.filename == '':
+    #     return redirect(url_for('error',error='没有上传文件'))
+    # file.save('./picture/wallpaper.jpg')
+    # image_path = os.path.abspath("./picture/wallpaper.jpg")
+    image_path = open_file()
+    ctypes.windll.user32.SystemParametersInfoW(20, 0, image_path, 3)
+    return flask.render_template('success.html')#
+
+
+
+
+@app.route("/AI")
+def AI():
+    pass
+
+
+        
 
 @app.route('/clean')
 def clean():

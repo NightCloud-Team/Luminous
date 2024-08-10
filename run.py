@@ -138,7 +138,7 @@ if __name__ == "__main__":
     ui = Ui_MainWindow(high, width, 8000)
     ui.show()
     #=app.exec_()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
     #app = QtWidgets.QApplication(sys.argv)
     #MainWindow = QtWidgets.QMainWindow()
     #ui = Ui_MainWindow()
