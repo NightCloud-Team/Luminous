@@ -11,7 +11,6 @@ import flask
 import ctypes
 from ctypes import wintypes
 import winreg
-import paddleocr
 from pywinauto import Application
 from pywinauto import findwindows,Desktop
 import win32gui

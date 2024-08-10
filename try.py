@@ -180,12 +180,9 @@
 #     text-align: center;
 # }
 # '''
-
-from function.teach import *
 from function.system import *
 import ctypes
 import subprocess
 import sys
-
 install()
 open_file()

@@ -11,8 +11,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=1">
     <style>
         /* styles.css */
-    
-    
+        * {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
         .chat-container {
             width: 400px;
             max-width: 100%;
