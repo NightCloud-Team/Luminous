@@ -180,11 +180,14 @@
 #     text-align: center;
 # }
 # '''
-
-from function.teach import *
 from function.system import *
 from function.AI import *
 import ctypes
 import subprocess
 import sys
+<<<<<<< HEAD
 text_process("帮我更改电脑壁纸")
+=======
+install()
+open_file()
+>>>>>>> 1e3dfc5fd2a4297e37bbbe0e98c1a0e282d9b517
