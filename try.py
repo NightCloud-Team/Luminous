@@ -183,9 +183,8 @@
 
 from function.teach import *
 from function.system import *
+from function.AI import *
 import ctypes
 import subprocess
 import sys
-
-install()
-open_file()
+text_process("帮我更改电脑壁纸")

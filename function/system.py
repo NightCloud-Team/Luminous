@@ -79,3 +79,26 @@ def install():
         params = ' '.join([sys.executable] + sys.argv)
         ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, params, None, 1)
     #subprocess.run(["runas" , "/user:Administrator" , "'powershell Install-Module -Name PSReadLine -Force -SkipPublisherCheck'"])demo.sln
+
+def memory():
+    if ctypes.windll.shell32.IsUserAnAdmin() != 0:
+        memory_s = psutil.virtual_memory()
+        print(memory_s.available / (1024**3))
+        pids = psutil.pids()
+        for pid in pids:
+            try:
+                process = ctypes.windll.kernel32.OpenProcess(0x001F0FFF, False, pid)
+                if process:
+                        # Empty the working set of the process
+                        ctypes.windll.psapi.EmptyWorkingSet(process)
+                        ctypes.windll.kernel32.CloseHandle(process)
+            except Exception as e:
+                    print(f"Could not clear memory for process {pid}: {e}")
+        memory_s = psutil.virtual_memory()
+        print(memory_s.available / (1024**3))
+        # 如果已经是管理员，直接运行
+    else:
+        # 如果不是管理员，使用ShellExecute以管理员权限重新运行
+        params = ' '.join([sys.executable] + sys.argv)
+        ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, params, None, 1)
+   

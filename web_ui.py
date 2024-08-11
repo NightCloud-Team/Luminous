@@ -10,6 +10,7 @@ from flask_caching import Cache
 import threading
 from function.SparkApi import *
 from function import SparkApi
+from function.AI import *
 
 
 app = flask.Flask(__name__)
@@ -234,25 +235,31 @@ def wallpaper_upload():
 
 @app.route("/chat", methods=["POST"])
 def AI():
-    appid = "91f141e6"
-    api_secret = "Y2I0YjMxNzc2MjUwYTFkMTM1OWM5NGQ4"
-    api_key ="a486bc27629c79308e2b06975ef46d41"
-    domain = "general"
-    Spark_url = "wss://spark-api.xf-yun.com/v1.1/chat"
+    # appid = "91f141e6"
+    # api_secret = "Y2I0YjMxNzc2MjUwYTFkMTM1OWM5NGQ4"
+    # api_key ="a486bc27629c79308e2b06975ef46d41"
+    # domain = "general"
+    # Spark_url = "wss://spark-api.xf-yun.com/v1.1/chat"
+    # question = request.get_json()
+    # print(question)
+    # user_message = question.get('message')
+    # text = [{"role": "system", "content": "你现在需要"}]
+    # question = checklen(getText(text,"user",user_message))
+
+    # SparkApi.answer =""
+    # SparkApi.main(appid,api_key,api_secret,Spark_url,domain,question)
+
     question = request.get_json()
     print(question)
     user_message = question.get('message')
-    text = []
-    question = checklen(getText(text,"user",user_message))
-
-    SparkApi.answer =""
-    SparkApi.main(appid,api_key,api_secret,Spark_url,domain,question)
+    answer = text(user_message)
+    
 
 
 
 
 
-    return jsonify({'response': SparkApi.answer})
+    return jsonify({'response': answer})
         
 
 @app.route('/clean')

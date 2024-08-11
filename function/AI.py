@@ -30,37 +30,65 @@ from datetime import datetime
 from time import mktime
 from urllib.parse import urlencode
 from wsgiref.handlers import format_date_time
+import json
+import requests
 
-def create_url(url,APISecret):
-        host = urlparse(url).netloc
-        path = urlparse(url).path
-        # 生成RFC1123格式的时间戳
-        now = datetime.now(url)
-        date = format_date_time(mktime(now.timetuple()))
 
-        # 拼接字符串
-        signature_origin = "host: " + host + "\n"
-        signature_origin += "date: " + date + "\n"
-        signature_origin += "GET " + path + " HTTP/1.1"
 
-        # 进行hmac-sha256进行加密
-        signature_sha = hmac.new(self.APISecret.encode('utf-8'), signature_origin.encode('utf-8'),
-                                 digestmod=hashlib.sha256).digest()
+# import json
+# import http.client
+# import requests
 
-        signature_sha_base64 = base64.b64encode(signature_sha).decode(encoding='utf-8')
+# obj = {
+#         "text": 高兴,
+#         "lang": "zh",
+#         "relation": "synonym_of",
+#         "k": 10
+# }
+# r = requests.post(url="https://texsmart.qq.com/api/text_graph", json= obj)
+# print(r.text)
 
-        authorization_origin = f'api_key="{self.APIKey}", algorithm="hmac-sha256", headers="host date request-line", signature="{signature_sha_base64}"'
+def text(texts):#分词
+    obj = {"str": texts}
+    req_str = json.dumps(obj).encode()
+    url = "https://texsmart.qq.com/api"
+    r = requests.post(url, data=req_str)
+    r.encoding = "utf-8"
+    result = json.loads(r.text)
+    print(result)
+    return result
+    #print(json.loads(r.text))
 
-        authorization = base64.b64encode(authorization_origin.encode('utf-8')).decode(encoding='utf-8')
+def text_graph(text):#返回同义词
+    # "text": 高兴,
+    #     "lang": "zh",
+    #     "relation": "synonym_of",
+    #     "k": 10返回数量
 
-        # 将请求的鉴权参数组合为字典
-        v = {
-            "authorization": authorization,
-            "date": date,
-            "host": self.host
-        }
-        # 拼接鉴权参数，生成url
-        url = self.Spark_url + '?' + urlencode(v)
-        # print(url)
-        # 此处打印出建立连接时候的url,参考本demo的时候可取消上方打印的注释，比对相同参数时生成的url与自己代码生成的url是否一致
-        return url
+    obj ={
+        "text": text,
+        "lang": "zh",
+        "relation": "synonym_of",
+        "k": 100
+    }
+    r = requests.post(url="https://texsmart.qq.com/api/text_graph", json= obj)
+    r.encoding = "utf-8"
+    result = json.loads(r.text)
+    print(result)
+    return result
+
+def text_process(texts):
+    VV_word = []
+    NN_word = []
+    result = text(texts)
+    process = result["phrase_list"]
+    print(process)
+    for process_1 in process:
+        if process_1["tag"] == "VV":
+            VV_word.append(process_1["str"])
+        elif process_1["tag"] == "NN":
+            NN_word.append(process_1["str"])
+    result_VV = " ".join(VV_word)
+    result_NN = " ".join(NN_word)
+    print("主意图:" + result_VV + result_NN)
+
