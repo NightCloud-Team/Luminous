@@ -166,7 +166,7 @@ def error(error):
 
 @app.route('/fix_web')
 def fix_web():
-    thread = threading.Thread(target=windows_web)
+    thread = threading.Thread(target=windows_fix_web)
     thread.start()
     return flask.render_template('custom.html',custom = "按照提示完成检测")#
 
