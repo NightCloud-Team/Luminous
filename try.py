@@ -180,8 +180,36 @@
 #     text-align: center;
 # }
 # '''
-from function.system import *
-from function.AI import *
 
-text_process("帮我更改电脑壁纸")
+#result = text_process("帮我更改鼠标灵敏度")
+#设置检测
+#from function.system import *
+# #from function.AI import *
+# import threading
+# import paddlehub as hub
+# import jieba.analyse
+#embedding = hub.Module(name='w2v_baidu_encyclopedia_target_word-ngram_1-2_dim300')
+#jieba = hub.Module(name="jieba_paddle")
+#result_1 = jieba.textrank("请帮我更改鼠标灵敏度", topK=20, withWeight=False, allowPOS=('vn'))
+#print(result_1)
 
+# result = text_process("请帮我更改鼠标灵敏度")
+
+
+
+
+# print(embedding.cosine_sim("设置", "滚"))
+# print(embedding.dot("设置", "帮"))
+
+# def load():
+#     global compare_set
+#     compare_set = hub.Module(name='w2v_baidu_encyclopedia_target_word-ngram_1-2_dim300')
+
+# thread = threading.Thread(target=load)
+# thread.start()
+# thread.join()
+# result_word = compare_set.cosine_sim("设置", "我")
+# print(result_word)
+
+
+import paddlehub

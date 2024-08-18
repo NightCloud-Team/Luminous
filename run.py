@@ -10,7 +10,7 @@
 from PySide6 import QtCore, QtGui, QtWidgets
 from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtWebEngineWidgets import QWebEngineView
-
+import time
 import sys
 import subprocess
 import pathlib
