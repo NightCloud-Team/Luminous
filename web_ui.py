@@ -300,10 +300,10 @@ def word_compare(text_1,text_2):
     else:
         return False
 
-def load():
-    global compare_set
-    hub = importlib.import_module('paddlehub')
-    compare_set = hub.Module(name='w2v_baidu_encyclopedia_target_word-ngram_1-2_dim300')
+# def load():
+#     global compare_set
+#     hub = importlib.import_module('paddlehub')
+#     compare_set = hub.Module(name='w2v_baidu_encyclopedia_target_word-ngram_1-2_dim300')
 
 
 

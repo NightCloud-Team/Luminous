@@ -208,35 +208,19 @@
 # thread = threading.Thread(target=load)
 # thread.start()
 # thread.join()
-# result_word = compare_set.cosine_sim("设置", "我")
-# print(result_word)
 
 
-from LAC import LAC
-import paddlehub as hub
-compare_set = hub.Module(name='w2v_baidu_encyclopedia_target_word-ngram_1-2_dim300')
-lac = LAC(mode='lac')
-lac_result = lac.run("请帮我更改鼠标灵敏度为1")
-v_word = []
-n_word = []
-m_word = []
-for i in range(len(lac_result[1])):
-    result_set = compare_set.cosine_sim("设置", lac_result[0][i])
-    result_switch = compare_set.cosine_sim("关闭", lac_result[0][i])
-    if result_set >= 0.1:
-        pass
-    else:
-        pass
-    # if lac_result[1][i] == "v":
-    #     v_word.append(lac_result[0][i])
-    #     # result_word = compare_set.cosine_sim("设置", lac_result[0][i])
-    #     # if result_word >= 0.1:
-    #     #     pass
-    #     # else:
-    #     #     pass
-    # elif lac_result[1][i] == "n":
-    #     n_word.append(lac_result[0][i])
-    # elif lac_result[1][i] == "m":
-    #     m_word.append(lac_result[0][i])
-    
 
+# from LAC import LAC
+# import paddlehub as hub
+# lac = LAC(mode='lac')
+# lac_result = lac.run("帮我关闭自动隐藏任务栏")
+# print(lac_result)  
+from sentence_transformers import SentenceTransformer
+sentences = ["This is an example sentence", "Each sentence is converted"]
+
+model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+embeddings = model.encode(sentences)
+print(embeddings)
+
+ 
