@@ -3,16 +3,17 @@
 
 <head>
 	<meta charset="UTF-8">
-	<script src="src/js/jquery.min.js"></script>
-	<link rel="stylesheet" href="src/css/style.css" />
-	<link href="fontawesome/css/brands.css" rel="stylesheet" />
-	<link href="fontawesome/css/solid.css" rel="stylesheet" />
+	<link rel="stylesheet" href="../css/style.css">
 	<title>首页</title>
 </head>
 
 <body>
-	<div id="template-placeholder"></div>
-	<script src="src/js/template.js"></script>
+	<div id="header"></div>
+	<div id="body"></div>
 </body>
+<script>
+	document.getElementById('header').innerHTML = '<object type="text/html" data="templates/header.html"></object>';
+	document.getElementById('body').innerHTML = '<object type="text/html" data="templates/body.html"></object>';
+</script>
 
 </html>

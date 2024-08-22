@@ -51,7 +51,8 @@ async def answer(question):
     text.append({"role": "assistant", "content": SparkApi.answer})
     return SparkApi.answer
 
-
+async def systen():
+    pass
 
 
 if "main" == __name__:
