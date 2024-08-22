@@ -10,9 +10,11 @@ from flask_caching import Cache
 import threading
 from function.SparkApi import *
 from function import SparkApi
-from function.AI import *
+from function.AI import text_process
+import importlib
+import paddlehub as hub
 
-
+compare_set = hub.Module(name='w2v_baidu_encyclopedia_target_word-ngram_1-2_dim300')
 app = flask.Flask(__name__)
 
 app.config['CACHE_TYPE'] = 'filesystem'
@@ -22,6 +24,7 @@ app.config['CACHE_DEFAULT_TIMEOUT'] = 300  # 设置默认超时时间为300秒
 # 初始化缓存
 cache = Cache(app)
 
+
 # @app.route('/favicon.ico')
 # def favicon():
 #     return send_from_directory(
@@ -30,6 +33,8 @@ cache = Cache(app)
 
 @app.route('/')
 def index():
+    #thread = threading.Thread(target=load)
+    #thread.start()
     return flask.render_template('load_AI.html')#
 
 
@@ -248,11 +253,29 @@ def AI():
 
     # SparkApi.answer =""
     # SparkApi.main(appid,api_key,api_secret,Spark_url,domain,question)
-
     question = request.get_json()
     print(question)
     user_message = question.get('message')
-    answer = text(user_message)
+    result = text_process(user_message)
+    result_1 = "".join(result[1])
+    print(result_1 + "1")
+    for traverse in result[0]:
+        print(traverse)
+        if word_compare("设置",traverse):
+            print(result_1)
+            if result_1=="鼠标灵敏度":
+                answer = result_1
+                print(jsonify({'response': answer}))
+                break
+
+
+
+
+
+    #word_compare_NN = {}
+
+    
+    #answer = text_process(user_message)
     
 
 
@@ -267,6 +290,20 @@ def clean():
     cache.clear()
     return "关闭"
 
+
+
+
+def word_compare(text_1,text_2):
+    result_word = compare_set.cosine_sim(text_1, text_2)
+    if result_word >= 0.1:
+        return True
+    else:
+        return False
+
+# def load():
+#     global compare_set
+#     hub = importlib.import_module('paddlehub')
+#     compare_set = hub.Module(name='w2v_baidu_encyclopedia_target_word-ngram_1-2_dim300')
 
 
 

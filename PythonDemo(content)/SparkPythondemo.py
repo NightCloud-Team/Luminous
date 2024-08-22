@@ -47,11 +47,13 @@ if __name__ == '__main__':
     while(1):
         Input = input("\n" +"我:")
         question = checklen(getText("user",Input))
+        print(question)
         SparkApi.answer =""
         print("星火:",end ="")
-        SparkApi.main(appid,api_key,api_secret,Spark_url,domain,question)
-        print(SparkApi.answer)
-        getText("assistant",SparkApi.answer)
+        answer = SparkApi.main(appid,api_key,api_secret,Spark_url,domain,question)
+        print(answer)
+        #print(SparkApi.answer + "1")
+        #getText("assistant",SparkApi.answer)
 
 
 

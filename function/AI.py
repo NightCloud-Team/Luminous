@@ -32,6 +32,13 @@ from urllib.parse import urlencode
 from wsgiref.handlers import format_date_time
 import json
 import requests
+import importlib
+
+#paddlehub模块
+def load():
+    global compare_set
+    hub = importlib.import_module('paddlehub')
+    compare_set = hub.Module(name='w2v_baidu_encyclopedia_target_word-ngram_1-2_dim300')
 
 
 
@@ -55,7 +62,7 @@ def text(texts):#分词
     r = requests.post(url, data=req_str)
     r.encoding = "utf-8"
     result = json.loads(r.text)
-    print(result)
+    #print(result)
     return result
     #print(json.loads(r.text))
 
@@ -74,7 +81,7 @@ def text_graph(text):#返回同义词
     r = requests.post(url="https://texsmart.qq.com/api/text_graph", json= obj)
     r.encoding = "utf-8"
     result = json.loads(r.text)
-    print(result)
+    #print(result)
     return result
 
 def text_process(texts):
@@ -82,7 +89,7 @@ def text_process(texts):
     NN_word = []
     result = text(texts)
     process = result["phrase_list"]
-    print(process)
+    #print(process)
     for process_1 in process:
         if process_1["tag"] == "VV":
             VV_word.append(process_1["str"])
@@ -90,5 +97,15 @@ def text_process(texts):
             NN_word.append(process_1["str"])
     result_VV = " ".join(VV_word)
     result_NN = " ".join(NN_word)
-    print("主意图:" + result_VV + result_NN)
+    consequence = "主意图:" + result_VV + "|" + result_NN
+    #print(consequence)
+    return [VV_word,NN_word]
+
+def word_compare(text_1,text_2):
+    result_word = compare_set.cosine_sim(text_1, text_2)
+    if result_word >= 0.1:
+        return True
+    else:
+        return False
+
 

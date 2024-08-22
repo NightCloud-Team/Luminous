@@ -47,19 +47,23 @@ def run_as_admin():
         ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, params, None, 1)
         return False
 def close(port):
-    for proc in psutil.process_iter(['pid', 'name', 'connections']):
+    for proc in psutil.process_iter(['pid', 'name']):  # 删除 'connections'
         try:
-            # 检查进程的所有连接
+            # 通过 proc.connections() 获取连接信息
             for conn in proc.connections(kind='inet'):
                 if conn.laddr.port == port:
-                    print(f"终止 {proc.info['pid']} 使用 {port}")
+                    print(f"终止进程 {proc.info['name']} (PID: {proc.info['pid']}) 占用端口 {port}")
                     proc.terminate()
-                    proc.wait(timeout=3)
-                    print(f"结束: {proc.info['pid']}")
+                    try:
+                        proc.wait(timeout=3)
+                        print(f"成功结束进程 {proc.info['name']} (PID: {proc.info['pid']})")
+                    except psutil.TimeoutExpired:
+                        print(f"进程 {proc.info['name']} (PID: {proc.info['pid']}) 未能在超时时间内结束")
                     return
-        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess) as e:
+            print(f"无法处理进程 (PID: {proc.info.get('pid')}), 错误: {e}")
             continue
-    print(f"找不到 {port}")
+    print(f"找不到占用端口 {port} 的进程")
 
 def windows_fix_web():
     subprocess.run(["msdt", "/id", "NetworkDiagnosticsNetworkAdapter"], check=True)
