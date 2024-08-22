@@ -212,21 +212,21 @@
 # print(result_word)
 
 
-from LAC import LAC
-import paddlehub as hub
-compare_set = hub.Module(name='w2v_baidu_encyclopedia_target_word-ngram_1-2_dim300')
-lac = LAC(mode='lac')
-lac_result = lac.run("请帮我更改鼠标灵敏度为1")
-v_word = []
-n_word = []
-m_word = []
-for i in range(len(lac_result[1])):
-    result_set = compare_set.cosine_sim("设置", lac_result[0][i])
-    result_switch = compare_set.cosine_sim("关闭", lac_result[0][i])
-    if result_set >= 0.1:
-        pass
-    else:
-        pass
+# from LAC import LAC
+# import paddlehub as hub
+# compare_set = hub.Module(name='w2v_baidu_encyclopedia_target_word-ngram_1-2_dim300')
+# lac = LAC(mode='lac')
+# lac_result = lac.run("请帮我更改鼠标灵敏度为1")
+# v_word = []
+# n_word = []
+# m_word = []
+# for i in range(len(lac_result[1])):
+#     result_set = compare_set.cosine_sim("设置", lac_result[0][i])
+#     result_switch = compare_set.cosine_sim("关闭", lac_result[0][i])
+#     if result_set >= 0.1:
+#         pass
+#     else:
+#         pass
     # if lac_result[1][i] == "v":
     #     v_word.append(lac_result[0][i])
     #     # result_word = compare_set.cosine_sim("设置", lac_result[0][i])
@@ -239,4 +239,6 @@ for i in range(len(lac_result[1])):
     # elif lac_result[1][i] == "m":
     #     m_word.append(lac_result[0][i])
     
-
+text = []
+text.append({"aaa" : "aaa"})
+print(text)
