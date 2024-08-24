@@ -6,9 +6,15 @@ import paddlehub
 from function import SparkApi
 from function.SparkApi import *
 from LAC import LAC
+import ctypes
+from function.system import *
+import os
+
 lac = LAC(mode='lac')
 #                                对话式快捷菜单     修改系统设置     加载完成   传回信息
 #responce_json = {"founction": "    chat   " / "   system  " / "  load  ","message":[]}
+#{"founction" : "system","message" : ["",""]}
+
 ip = "127.0.0.1"
 port = "8888"
 
@@ -38,9 +44,10 @@ async def receive_message(websocket,path):
     responce = json.loads(responce_json)
     if responce["founction"] == "chat":
         spark_answer = await answer(responce["message"][0])
-        websocket.send({"founction" : "answer","message":[spark_answer]})
+        websocket.send({"founction" : "chatr","message":[spark_answer]})
     elif responce["founction"] == "system":
-        pass
+        responce_system = await system(responce["message"])
+        websocket.send({"founction" : "founction","message":[responce_system]})
 
 
 async def answer(question):
@@ -51,8 +58,25 @@ async def answer(question):
     text.append({"role": "assistant", "content": SparkApi.answer})
     return SparkApi.answer
 
-async def systen():
-    pass
+async def system(function):
+    if function[0] == "wallpaper":
+        try:
+            image_path = open_file()
+            ctypes.windll.user32.SystemParametersInfoW(20, 0, image_path, 3)
+            return True
+        except:
+            return False
+    elif function[0] == "taskbar":
+        try:
+            if function[1] == True:
+                os.path.abspath("./Turn_ON_auto-hide_taskbar.bat")
+            elif function[1] == False:
+                os.path.abspath("./Turn_OFF_auto-hide_taskbar.bat")
+            else:
+                return False
+            return True
+        except:
+            return False
 
 
 if "main" == __name__:
