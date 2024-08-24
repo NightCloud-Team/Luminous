@@ -34,6 +34,7 @@ def load_complete():
 
 
 async def receive_message(websocket,path):
+<<<<<<< HEAD
     response_json = await websocket.recv()
     response = json.loads(response_json)
     if response["function"] == "chat":
@@ -41,6 +42,16 @@ async def receive_message(websocket,path):
         websocket.send({"function" : "answer","message":[spark_answer]})
     elif response["function"] == "system":
         pass
+=======
+    responce_json = await websocket.recv()
+    responce = json.loads(responce_json)
+    if responce["founction"] == "chat":
+        spark_answer = await answer(responce["message"][0])
+        websocket.send({"founction" : "chatr","message":[spark_answer]})
+    elif responce["founction"] == "system":
+        responce_system = await system(responce["message"])
+        websocket.send({"founction" : "founction","message":[responce_system]})
+>>>>>>> 303fcc43b8f851fd0dcb4f1a0460eeadf336d8a4
 
 
 async def answer(question):
@@ -51,8 +62,25 @@ async def answer(question):
     text.append({"role": "assistant", "content": SparkApi.answer})
     return SparkApi.answer
 
-async def systen():
-    pass
+async def system(function):
+    if function[0] == "wallpaper":
+        try:
+            image_path = open_file()
+            ctypes.windll.user32.SystemParametersInfoW(20, 0, image_path, 3)
+            return True
+        except:
+            return False
+    elif function[0] == "taskbar":
+        try:
+            if function[1] == True:
+                os.path.abspath("./Turn_ON_auto-hide_taskbar.bat")
+            elif function[1] == False:
+                os.path.abspath("./Turn_OFF_auto-hide_taskbar.bat")
+            else:
+                return False
+            return True
+        except:
+            return False
 
 
 if "main" == __name__:
