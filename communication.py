@@ -5,10 +5,10 @@ import json
 import paddlehub
 from function import SparkApi
 from function.SparkApi import *
-from LAC import LAC
-lac = LAC(mode='lac')
+#from LAC import LAC
+#lac = LAC(mode='lac')
 #                                对话式快捷菜单     修改系统设置     加载完成   传回信息
-#responce_json = {"founction": "    chat   " / "   system  " / "  load  ","message":[]}
+#response_json = {"function": "    chat   " / "   system  " / "  load  ","message":[]}
 ip = "127.0.0.1"
 port = "8888"
 
@@ -22,24 +22,24 @@ text = []
 def load_complete():
     ips = ip + ":" + port
     loading = websockets.connect("ws://" + ips)
-    message = {"founction" : "load","message":["load-complete!"]}
+    message = {"function" : "load","message":["load-complete!"]}
     message_json = json.dumps(message)
     while True:
         input_text = input(message_json)
         loading.send(input_text)
-        responce_json = loading .recv()
-        responce = json.loads(responce_json)
-        if responce["founction"] == "load" and responce["message"][0] == "load-complete!":
+        response_json = loading .recv()
+        response = json.loads(response_json)
+        if response["function"] == "load" and response["message"][0] == "load-complete!":
             break
 
 
 async def receive_message(websocket,path):
-    responce_json = await websocket.recv()
-    responce = json.loads(responce_json)
-    if responce["founction"] == "chat":
-        spark_answer = await answer(responce["message"][0])
-        websocket.send({"founction" : "answer","message":[spark_answer]})
-    elif responce["founction"] == "system":
+    response_json = await websocket.recv()
+    response = json.loads(response_json)
+    if response["function"] == "chat":
+        spark_answer = await answer(response["message"][0])
+        websocket.send({"function" : "answer","message":[spark_answer]})
+    elif response["function"] == "system":
         pass
 
 
