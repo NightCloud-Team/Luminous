@@ -1,7 +1,7 @@
 ### Hi👋, This is Luminous
 
 <div align="center">
-  <img src="Luminous.jpg" width="80%"/>
+  <img src="Luminous.jpg" width="60%"/>
 </div>
 
 - ✨ 这是一个未完成开发的净土
