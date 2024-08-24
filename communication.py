@@ -1,3 +1,5 @@
+import ctypes
+
 import websocket
 import websockets
 import asyncio
@@ -5,6 +7,10 @@ import json
 import paddlehub
 from function import SparkApi
 from function.SparkApi import *
+import os
+
+from function.system import open_file
+
 #from LAC import LAC
 #lac = LAC(mode='lac')
 #                                对话式快捷菜单     修改系统设置     加载完成   传回信息
@@ -34,7 +40,6 @@ def load_complete():
 
 
 async def receive_message(websocket,path):
-<<<<<<< HEAD
     response_json = await websocket.recv()
     response = json.loads(response_json)
     if response["function"] == "chat":
@@ -42,7 +47,6 @@ async def receive_message(websocket,path):
         websocket.send({"function" : "answer","message":[spark_answer]})
     elif response["function"] == "system":
         pass
-=======
     responce_json = await websocket.recv()
     responce = json.loads(responce_json)
     if responce["founction"] == "chat":
@@ -51,7 +55,6 @@ async def receive_message(websocket,path):
     elif responce["founction"] == "system":
         responce_system = await system(responce["message"])
         websocket.send({"founction" : "founction","message":[responce_system]})
->>>>>>> 303fcc43b8f851fd0dcb4f1a0460eeadf336d8a4
 
 
 async def answer(question):
