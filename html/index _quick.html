@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<script src="src/js/jquery.min.js"></script>
+	<link rel="stylesheet" href="src/css/style.css" />
+	<link href="fontawesome/css/fontawesome.css" rel="stylesheet" />
+	<link href="fontawesome/css/brands.css" rel="stylesheet" />
+	<link href="fontawesome/css/solid.css" rel="stylesheet" />
+	<title>首页</title>
+</head>
+
+<body>
+	<div id="nav">
+		<ul>
+			<li><a class="fa-solid fa-house">首页</a></li><span>|</span>
+			<li><a class="fa-solid fa-globe" href="learn.html">学习</a></li><span>|</span>
+			<li><a class="fa-solid fa-xmark">设置</a>
+				<div class="subnav">
+					<ul>
+						<li><a href="settings-system.html">系统设置</a></li>
+						<li><a href="settings-software.html">软件设置</a></li>
+					</ul>
+				</div>
+			</li>
+			<span>|</span>
+			<li><a class="fa-solid fa-user" href="about.html">关于</a></li>
+		</ul>
+	</div>
+	<div id="nav2">
+		<div class="chat-container">
+			<div class="chat-window" id="chat-window">
+			</div>
+			<div class="input-area">
+				<input type="text" id="user-input" placeholder="输入你的需求">
+				<button id="send-button" onclick="sendmessage()">发送</button>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	const button = document.getElementById("send-button");
+	button.disabled = true;
+	document.getElementById("user-input").placeholder = "等待加载完成";
+	let websocket = null;
+	function connect(){
+		const websocket = new WebSocket("ws://127.0.0.1:8888");
+		websocket.onopen = function () {
+			const button = document.getElementById("send-button");
+			button.disabled = false;
+			document.getElementById("user-input").placeholder = "输入你的需求";
+		};
+		websocket.onclose = function () {
+			const button = document.getElementById("send-button");
+			button.disabled = true;
+			setTimeout(connect, 1000);
+			console.log("WebSocket 连接未打开");
+			document.getElementById("user-input").placeholder = "等待加载完成";
+			
+		};
+		websocket.onerror = function () {
+			const button = document.getElementById("send-button");
+			button.disabled = true;
+			setTimeout(connect, 1000);
+			console.log("WebSocket 连接未打开");
+			document.getElementById("user-input").placeholder = "等待加载完成";
+		};
+	}
+	connect()
+	
+
+	function sendmessage() {
+
+		}
+</script>
+
+</html>

@@ -5,12 +5,12 @@ import json
 import paddlehub
 from function import SparkApi
 from function.SparkApi import *
-from LAC import LAC
+#from LAC import LAC
 import ctypes
 from function.system import *
 import os
 
-lac = LAC(mode='lac')
+#lac = LAC(mode='lac')
 #                                对话式快捷菜单     修改系统设置     加载完成   传回信息
 #responce_json = {"founction": "    chat   " / "   system  " / "  load  ","message":[]}
 #{"founction" : "system","message" : ["",""]}
@@ -22,21 +22,21 @@ appid = "91f141e6"
 api_secret = "Y2I0YjMxNzc2MjUwYTFkMTM1OWM5NGQ4"
 api_key ="a486bc27629c79308e2b06975ef46d41"
 domain = "general"
-Spark_url = "wss://spark-api.xf-yun.com/v1.1/chat"
+Spark_url = "ws://spark-api.xf-yun.com/v1.1/chat"
 text = []
 
-def load_complete():
-    ips = ip + ":" + port
-    loading = websockets.connect("ws://" + ips)
-    message = {"founction" : "load","message":["load-complete!"]}
-    message_json = json.dumps(message)
-    while True:
-        input_text = input(message_json)
-        loading.send(input_text)
-        responce_json = loading .recv()
-        responce = json.loads(responce_json)
-        if responce["founction"] == "load" and responce["message"][0] == "load-complete!":
-            break
+# def load_complete():
+#     ips = ip + ":" + port
+#     loading = websockets.connect("ws://" + ips)
+#     message = {"founction" : "load","message":["load-complete!"]}
+#     message_json = json.dumps(message)
+#     while True:
+#         input_text = input(message_json)
+#         loading.send(input_text)
+#         responce_json = loading .recv()
+#         responce = json.loads(responce_json)
+#         if responce["founction"] == "load" and responce["message"][0] == "load-complete!":
+#             break
 
 
 async def receive_message(websocket,path):
@@ -79,8 +79,9 @@ async def system(function):
             return False
 
 
+async def main():
+    async with websockets.serve(receive_message, "127.0.0.1", 8888):
+        await asyncio.Future()
+
 if "main" == __name__:
-    load_complete()
-    server = websocket.WebSocketServer(receive_message, ip, port)
-    asyncio.get_event_loop().run_until_complete(server)
-    asyncio.get_event_loop().run_forever()
+    asyncio.run(main())
