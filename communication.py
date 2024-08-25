@@ -63,6 +63,7 @@ async def receive_message(websocket,path):
         websocket.send({"function" : "function","message":[response_system]})
 
 
+
 async def answer(question):
     question_out = checklen(getText("user",question))
     SparkApi.answer =""
@@ -70,6 +71,7 @@ async def answer(question):
     text.append(question_out[0])
     text.append({"role": "assistant", "content": SparkApi.answer})
     return SparkApi.answer
+
 
 async def system(function):
     if function[0] == "wallpaper":
@@ -96,5 +98,5 @@ async def main():
     async with websockets.serve(receive_message, "127.0.0.1", 8888):
         await asyncio.Future()
 
-if "main" == __name__:
-    asyncio.run(main())
+
+asyncio.run(main())
