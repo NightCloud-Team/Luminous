@@ -46,21 +46,27 @@ text = []
 
 
 async def receive_message(websocket,path):
-    response_json = await websocket.recv()
-    response = json.loads(response_json)
-    if response["function"] == "chat":
-        spark_answer = await answer(response["message"][0])
-        websocket.send({"function" : "answer","message":[spark_answer]})
-    elif response["function"] == "system":
-        pass
-    response_json = await websocket.recv()
-    response = json.loads(response_json)
-    if response["function"] == "chat":
-        spark_answer = await answer(response["message"][0])
-        websocket.send({"function" : "chatr","message":[spark_answer]})
-    elif response["function"] == "system":
-        response_system = await system(response["message"])
-        websocket.send({"function" : "function","message":[response_system]})
+    try:
+        print("connect...")
+        response_json = await websocket.recv()
+        response = json.loads(response_json)
+        if response["function"] == "chat":
+            spark_answer = await answer(response["message"][0])
+            websocket.send({"function" : "answer","message":[spark_answer]})
+        elif response["function"] == "system":
+            pass
+        response_json = await websocket.recv()
+        response = json.loads(response_json)
+        if response["function"] == "chat":
+            spark_answer = await answer(response["message"][0])
+            websocket.send({"function" : "chatr","message":[spark_answer]})
+        elif response["function"] == "system":
+            response_system = await system(response["message"])
+            websocket.send({"function" : "function","message":[response_system]})
+    except websockets.exceptions.ConnectionClosed:
+        print("Connection closed")
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 
 async def answer(question):
@@ -93,8 +99,8 @@ async def system(function):
 
 
 async def main():
-    async with websockets.serve(receive_message, "127.0.0.1", 8888):
+    async with websockets.serve(receive_message, "localhost", 8888):
+        print("loading...")
         await asyncio.Future()
 
-if "main" == __name__:
-    asyncio.run(main())
+asyncio.run(main())
