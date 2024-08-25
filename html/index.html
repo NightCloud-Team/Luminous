@@ -28,11 +28,16 @@
 			<li><a class="fa-solid fa-user" href="about.html">关于</a></li>
 		</ul>
 	</div>
-	<div class="buttons" id="nav2">
-		<a href="" ><button class="button" ><span>更换壁纸</span></button></a>
-		<a href="" ><button class="button" ><span>任务栏设置</span></button></a>
-		<a href="" ><button class="button" ><span>网络检测</span></button></a>
+	<div id="nav2">
+		<div class="chat-container">
+			<div class="chat-window" id="chat-window">
+			</div>
+			<div class="input-area">
+				<input type="text" id="user-input" placeholder="输入你的需求">
+				<button id="send-button" onclick="sendmessage()">发送</button>
+			</div>
+		</div>
 	</div>
 </body>
-
+<script src="src/js/websocket.js"></script>
 </html>

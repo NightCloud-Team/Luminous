@@ -47,7 +47,6 @@ text = []
 
 async def receive_message(websocket,path):
     try:
-        print("connect...")
         response_json = await websocket.recv()
         response = json.loads(response_json)
         if response["function"] == "chat":
@@ -101,8 +100,8 @@ async def system(function):
 
 
 async def main():
+    print("loading...")
     async with websockets.serve(receive_message, "localhost", 8888):
-        print("loading...")
         await asyncio.Future()
 
 asyncio.run(main())
