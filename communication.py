@@ -1,3 +1,5 @@
+import ctypes
+
 import websocket
 import websockets
 import asyncio
@@ -15,6 +17,10 @@ import os
 #responce_json = {"founction": "    chat   " / "   system  " / "  load  ","message":[]}
 #{"founction" : "system","message" : ["",""]}
 
+#from LAC import LAC
+#lac = LAC(mode='lac')
+#                                对话式快捷菜单     修改系统设置     加载完成   传回信息
+#response_json = {"function": "    chat   " / "   system  " / "  load  ","message":[]}
 ip = "127.0.0.1"
 port = "8888"
 
@@ -40,6 +46,13 @@ text = []
 
 
 async def receive_message(websocket,path):
+    response_json = await websocket.recv()
+    response = json.loads(response_json)
+    if response["function"] == "chat":
+        spark_answer = await answer(response["message"][0])
+        websocket.send({"function" : "answer","message":[spark_answer]})
+    elif response["function"] == "system":
+        pass
     responce_json = await websocket.recv()
     responce = json.loads(responce_json)
     if responce["founction"] == "chat":
