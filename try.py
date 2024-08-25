@@ -238,7 +238,12 @@
     #     n_word.append(lac_result[0][i])
     # elif lac_result[1][i] == "m":
     #     m_word.append(lac_result[0][i])
+import websockets
+import asyncio
+async def receive_message(websocket,path):
+    message = websocket.recv()
+async def main():
+    async with websockets.serve(receive_message, "127.0.0.1", 8888):
+        await asyncio.Future()
     
-text = []
-text.append({"aaa" : "aaa"})
-print(text)
+    
