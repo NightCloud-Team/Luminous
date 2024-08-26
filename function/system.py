@@ -6,6 +6,9 @@ import psutil#引用库
 import subprocess
 import win32gui
 import win32con
+import time
+import pywifi
+from pywifi import const
 
 ABM_GETSTATE = 0x00000004  # 获取任务栏状态的消息
 ABS_AUTOHIDE = 0x1         # 自动隐藏状态
@@ -106,3 +109,32 @@ def memory():
         params = ' '.join([sys.executable] + sys.argv)
         ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, params, None, 1)
    
+def connect_wifi(name,password):
+    wifi = pywifi.PyWiFi()
+    iface = wifi.interfaces()[0]
+    
+    # 断开当前连接
+    iface.disconnect()
+    time.sleep(1)  # 等待断开
+    
+    # 检查是否成功断开
+    if iface.status() == const.IFACE_DISCONNECTED:
+        profile = pywifi.Profile()
+        profile.ssid = name  # 设置Wi-Fi名称
+        profile.key = password  # 设置Wi-Fi密码
+        profile.auth = const.AUTH_ALG_OPEN
+        profile.akm.append(const.AKM_TYPE_WPA2PSK)
+        profile.cipher = const.CIPHER_TYPE_CCMP
+        
+        iface.remove_all_network_profiles()  # 删除所有配置
+        tmp_profile = iface.add_network_profile(profile)  # 加载配置
+        
+        iface.connect(tmp_profile)  # 连接
+        time.sleep(10)  # 等待连接
+        
+        if iface.status() == const.IFACE_CONNECTED:
+            return True
+        else:
+            return False
+    else:
+        return False

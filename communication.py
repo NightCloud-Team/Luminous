@@ -52,7 +52,7 @@ async def receive_message(websocket,path):
         response_json = await websocket.recv()
         response = json.loads(response_json)
         if response["function"] == "chat":
-            spark_answer = await answer(response["message"])
+            spark_answer = await answer(response["message"][0])
             await websocket.send(json.dumps({"function" : "chat","message":[spark_answer]}))
         elif response["function"] == "system":
             response_system = await system(response["message"])
@@ -91,6 +91,14 @@ async def system(function):
             else:
                 return False
             return True
+        except:
+            return False
+    elif function[0] == "wifi":
+        try:
+            if connect_wifi(function[0][0],function[0][1]):
+                return True
+            else:
+                return False
         except:
             return False
 
