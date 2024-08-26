@@ -2,43 +2,76 @@
 <html lang="zh">
 
 <head>
-	<meta charset="UTF-8">
-	<script src="src/js/jquery.min.js"></script>
-	<link rel="stylesheet" href="src/css/style.css" />
-	<link href="fontawesome/css/fontawesome.css" rel="stylesheet" />
-	<link href="fontawesome/css/brands.css" rel="stylesheet" />
-	<link href="fontawesome/css/solid.css" rel="stylesheet" />
-	<title>首页</title>
+    <meta charset="UTF-8">
+    <script src="src/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="src/css/style.css"/>
+    <link href="fontawesome/css/fontawesome.css" rel="stylesheet"/>
+    <link href="fontawesome/css/brands.css" rel="stylesheet"/>
+    <link href="fontawesome/css/solid.css" rel="stylesheet"/>
+    <title>首页</title>
 </head>
 
 <body>
-	<div id="nav">
-		<ul>
-			<li><a class="fa-solid fa-house">首页</a></li><span>|</span>
-			<li><a class="fa-solid fa-globe" href="learn.html">学习</a></li><span>|</span>
-			<li><a class="fa-solid fa-xmark">设置</a>
-				<div class="subnav">
-					<ul>
-						<li><a href="settings-system.html">系统设置</a></li>
-						<li><a href="settings-software.html">软件设置</a></li>
-					</ul>
-				</div>
-			</li>
-			<span>|</span>
-			<li><a class="fa-solid fa-user" href="about.html">关于</a></li>
-		</ul>
-	</div>
-	<div id="nav2">
-		<div class="chat-container">
-			<div class="chat-window" id="chat-window">
-			</div>
-			<div class="input-area">
-				<input type="text" id="user-input" placeholder="输入你的需求">
-				<!-- <button id="send-button" onclick="sendmessage()">发送</button> -->
-				<button id="send-button">发送</button>
-			</div>
-		</div>
-	</div>
+<!-- 导航栏 -->
+<div id="nav">
+    <ul>
+        <li><a class="fa-solid fa-house nav-link" data-target="#index">首页</a></li>
+        <span>|</span>
+        <li><a class="fa-solid fa-globe nav-link" href="#" data-target="#learn">学习</a></li>
+        <span>|</span>
+        <li><a class="fa-solid fa-xmark">设置</a>
+            <div class="subnav">
+                <ul>
+                    <li><a href="#" class="nav-link" data-target="#system-settings">系统设置</a></li>
+                    <li><a href="#" class="nav-link" data-target="#software-settings">软件设置</a></li>
+                </ul>
+            </div>
+        </li>
+        <span>|</span>
+        <li><a class="fa-solid fa-user nav-link" href="#">关于</a></li>
+    </ul>
+</div>
+<!-- 主页 -->
+<div id="index" class="group active">
+    <div id="nav2">
+
+        <div class="chat-container">
+            <div class="chat-window" id="chat-window">
+            </div>
+            <div class="input-area">
+                <input type="text" id="user-input" placeholder="输入你的需求">
+                <!-- <button id="send-button" onclick="sendmessage()">发送</button> -->
+                <button id="send-button">发送</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 学习 -->
+<div id="learn" class="group">
+    <div id="nav2">
+        <button class="btn center">
+            <span class="center">123</span>
+        </button>
+    </div>
+</div>
+
+<div id="system-settings" class="group">
+    <div id="nav2" class="buttons">
+        <button class="btn center">
+            <span class="center">壁纸设置</span>
+        </button>
+        <button class="btn center">
+            <span class="center">任务栏设置</span>
+        </button>
+        <button class="btn center">
+            <span class="center">配色方案</span>
+        </button>
+        <button class="btn center">
+            <span class="center">鼠标设置</span>
+        </button>
+    </div>
+</div>
 </body>
+<script src="src/js/index.js"></script>
 <script src="src/js/websocket.js"></script>
 </html>

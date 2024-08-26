@@ -18,25 +18,25 @@ body {
     margin: 20px auto;
 }
 
-#nav>ul>li {
+#nav > ul > li {
     float: left;
     width: 175.75px;
     height: 72px;
     text-align: center;
 }
 
-#nav>ul>li>a {
+#nav > ul > li > a {
     text-align: center;
     line-height: 72px;
     font-size: 20px;
     color: black;
 }
 
-#nav>ul>li>a:hover {
+#nav > ul > li > a:hover {
     color: orange;
 }
 
-ul>span {
+ul > span {
     float: left;
     line-height: 72px;
     color: rgb(116, 116, 116);
@@ -53,7 +53,7 @@ ul>span {
     text-align: center
 }
 
-#nav2>a {
+#nav2 > a {
     text-align: right;
     font-size: 24px;
 
@@ -95,7 +95,7 @@ ul>span {
     transform: translateX(-50%); /* 向左移动50%以居中对齐 */
     min-width: 150px; /* 确保有足够的宽度 */
     background-color: rgb(247, 249, 250);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     border-radius: 5px; /* 可选：添加圆角边框 */
 }
@@ -202,7 +202,79 @@ ul>span {
     background-color: #0056b3;
 }
 
-#nav2>a>em{
-    font-style:oblique;
+#nav2 > a > em {
+    font-style: oblique;
     font-weight: bold;
+}
+
+.group {
+    display: none;
+}
+
+.group.active {
+    display: block;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn {
+    background-color: #128d09;
+    color: white;
+    width: 120px;
+    height: 45px;
+    border: 0;
+    font-size: 16px;
+    box-sizing: content-box;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 5px #999;
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+
+.btn:hover {
+    background-color: #3e8e41
+}
+
+.btn:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.btn span {
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.btn span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.btn:hover span {
+    padding-right: 25px;
+}
+
+.btn:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.center {
+    text-align: center;
 }
