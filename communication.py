@@ -27,8 +27,10 @@ port = "8888"
 appid = "91f141e6"
 api_secret = "Y2I0YjMxNzc2MjUwYTFkMTM1OWM5NGQ4"
 api_key ="a486bc27629c79308e2b06975ef46d41"
-domain = "general"
-Spark_url = "ws://spark-api.xf-yun.com/v1.1/chat"
+#domain = "general"
+domain = "4.0Ultra"
+#Spark_url = "wss://spark-api.xf-yun.com/v1.1/chat"
+Spark_url = "wss://spark-api.xf-yun.com/v4.0/chat"
 text = []
 
 # def load_complete():
