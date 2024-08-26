@@ -8,7 +8,6 @@ function connect() {
 		const button = document.getElementById("send-button");
 		button.disabled = false;
 		document.getElementById("user-input").placeholder = "输入你的需求";
-		websocket.close();
 	};
 	websocket.onclose = function () {
 		const button = document.getElementById("send-button");
@@ -26,7 +25,6 @@ function connect() {
 		document.getElementById("user-input").placeholder = "等待加载完成";
 	};
 }
-connect()
 
 
 function sendmessage() {
@@ -34,3 +32,5 @@ function sendmessage() {
 	websocket.onopen = function () { }
 
 }
+
+connect()
