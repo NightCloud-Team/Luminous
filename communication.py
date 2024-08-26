@@ -50,18 +50,11 @@ async def receive_message(websocket,path):
         response_json = await websocket.recv()
         response = json.loads(response_json)
         if response["function"] == "chat":
-            spark_answer = await answer(response["message"][0])
-            websocket.send({"function" : "answer","message":[spark_answer]})
-        elif response["function"] == "system":
-            pass
-        response_json = await websocket.recv()
-        response = json.loads(response_json)
-        if response["function"] == "chat":
-            spark_answer = await answer(response["message"][0])
-            websocket.send({"function" : "chatr","message":[spark_answer]})
+            spark_answer = await answer(response["message"])
+            await websocket.send(json.dumps({"function" : "chat","message":[spark_answer]}))
         elif response["function"] == "system":
             response_system = await system(response["message"])
-            websocket.send({"function" : "function","message":[response_system]})
+            await websocket.send(json.dumps({"function" : "function","message":[response_system]}))
     except websockets.exceptions.ConnectionClosed:
         print("Connection closed")
     except Exception as e:
@@ -70,7 +63,8 @@ async def receive_message(websocket,path):
 
 
 async def answer(question):
-    question_out = checklen(getText("user",question))
+    question_out = checklen(getText(text,"user",question))
+    print(question)
     SparkApi.answer =""
     SparkApi.main(appid,api_key,api_secret,Spark_url,domain,question_out)
     text.append(question_out[0])
