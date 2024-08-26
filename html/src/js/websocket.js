@@ -46,6 +46,7 @@ function sendmessage() {
 		appendMessage("user", messageText);
 		message = JSON.stringify({ "function": "chat", "message": messageText })
 		websocket.send(message)
+		inputField.value = '';
 	}
 	websocket.onmessage = function (event) {
 		const data = JSON.parse(event.data);
