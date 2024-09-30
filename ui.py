@@ -2,12 +2,14 @@
 
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow
-from ui import luminous_ui  # 导入你自动生成的 UI 文件
+from uis.luminous_ui import Ui_MainWindow
+#from uis.luminous_ui import Ui_MainWindow   # 导入你自动生成的 UI 文件
 
-class MainWindow(QMainWindow, luminous_ui):
+class MainWindow(QMainWindow,Ui_MainWindow):
     def __init__(self):
-        #super(MainWindow, self).__init__()
-        self.setupUi(self)  # 调用自动生成的 UI 设置函数
+        super(MainWindow,self).__init__()
+        #self.ui = Ui_MainWindow()
+        self.setupUi(self) # 调用自动生成的 UI 设置函数
         self.setup_connections()
 
     def setup_connections(self):
