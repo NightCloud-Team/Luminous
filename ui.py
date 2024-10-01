@@ -14,11 +14,11 @@ class MainWindow(QMainWindow,Ui_MainWindow):
 
     def setup_connections(self):
         # 设置按钮切换 QStackedWidget 的页面
-        self.quickmunu.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(0))
-        self.learn.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(1))
-        self.download.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(2))
-        self.settings.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
-        self.about.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(4))
+        self.quickmenu.clicked.connect(lambda: self.widget.setCurrentIndex(0))
+        self.learn.clicked.connect(lambda: self.widget.setCurrentIndex(1))
+        self.download.clicked.connect(lambda: self.widget.setCurrentIndex(2))
+        self.settings.clicked.connect(lambda: self.widget.setCurrentIndex(3))
+        self.about.clicked.connect(lambda: self.widget.setCurrentIndex(4))
         # 添加更多的信号槽连接
 
 if __name__ == "__main__":
