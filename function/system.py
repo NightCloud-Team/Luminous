@@ -138,3 +138,17 @@ def connect_wifi(name,password):
             return False
     else:
         return False
+    
+def wallpaper_upload():
+    # if 'file' not in request.files:
+    #     return redirect(url_for('error',error='没有上传文件'))
+    # file = request.files['file']
+    # if file.filename == '':
+    #     return redirect(url_for('error',error='没有上传文件'))
+    # file.save('./picture/wallpaper.jpg')
+    # image_path = os.path.abspath("./picture/wallpaper.jpg")
+    image_path = open_file()
+    ctypes.windll.user32.SystemParametersInfoW(20, 0, image_path, 3)
+
+def mouse():
+    subprocess.run(['control.exe', 'main.cpl,,4'])

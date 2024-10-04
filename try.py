@@ -238,40 +238,41 @@
     #     n_word.append(lac_result[0][i])
     # elif lac_result[1][i] == "m":
     #     m_word.append(lac_result[0][i])
-import pygame
-import sys
+# import pygame
+# import sys
 
-def create_spotlight():
-    pygame.init()
-    screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-    clock = pygame.time.Clock()
-    radius = 100
+# def create_spotlight():
+#     pygame.init()
+#     screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+#     clock = pygame.time.Clock()
+#     radius = 100
 
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    pygame.quit()
-                    sys.exit()
+#     while True:
+#         for event in pygame.event.get():
+#             if event.type == pygame.QUIT:
+#                 pygame.quit()
+#                 sys.exit()
+#             elif event.type == pygame.KEYDOWN:
+#                 if event.key == pygame.K_ESCAPE:
+#                     pygame.quit()
+#                     sys.exit()
 
-        # 获取鼠标位置
-        mouse_x, mouse_y = pygame.mouse.get_pos()
+#         # 获取鼠标位置
+#         mouse_x, mouse_y = pygame.mouse.get_pos()
 
-        # 创建半透明黑色遮罩
-        overlay = pygame.Surface(screen.get_size(), pygame.SRCALPHA)
-        overlay.fill((0, 0, 0, 180))  # 半透明黑色
+#         # 创建半透明黑色遮罩
+#         overlay = pygame.Surface(screen.get_size(), pygame.SRCALPHA)
+#         overlay.fill((0, 0, 0, 180))  # 半透明黑色
 
-        # 创建聚光灯效果
-        pygame.draw.circle(overlay, (0, 0, 0, 0), (mouse_x, mouse_y), radius)
+#         # 创建聚光灯效果
+#         pygame.draw.circle(overlay, (0, 0, 0, 0), (mouse_x, mouse_y), radius)
 
-        # 绘制到屏幕
-        screen.fill((0, 0, 0))
-        screen.blit(overlay, (0, 0))
-        pygame.display.update()
-        clock.tick(60)
+#         # 绘制到屏幕
+#         screen.fill((0, 0, 0))
+#         screen.blit(overlay, (0, 0))
+#         pygame.display.update()
+#         clock.tick(60)
 
-create_spotlight()
-
+# create_spotlight()
+import subprocess
+subprocess.run(['control.exe appwiz.cpl,,5'])
