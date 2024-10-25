@@ -274,5 +274,60 @@
 #         clock.tick(60)
 
 # create_spotlight()
-import subprocess
-subprocess.run(['control.exe appwiz.cpl,,5'])
+# coding:utf-8
+ 
+import pywifi
+from pywifi import const
+import time
+# ssid = []
+# wifi = pywifi.PyWiFi()
+# iface = wifi.interfaces()[0]
+# iface.disconnect()
+# time.sleep(1)
+# assert iface.status() in\
+#     [const.IFACE_DISCONNECTED, const.IFACE_INACTIVE]
+ 
+# print("^_^ 开始扫描附近wifi...")
+# iface.scan()
+ 
+# scanres = iface.scan_results()
+# nums = len(scanres)
+# print("数量: %s"%(nums))
+# print ("| %s |  %s |  %s | %s"%("WIFIID","SSID","BSSID","signal"))
+# for index,wifi_info in enumerate(scanres):
+#     print("| %s | %s | %s | %s \n"%(index, wifi_info.ssid, wifi_info.bssid, wifi_info.signal))
+#     ssid.append(wifi_info.ssid)
+# saved_profiles = iface.network_profiles()
+# for profile in saved_profiles:
+#     if profile.ssid in ssid:
+#         iface.connect(profile)
+#         time.sleep(5)
+#         if iface.status() == const.IFACE_CONNECTED:
+#             print("1")
+def scan_wifi():
+    wifi = pywifi.PyWiFi()
+    iface = wifi.interfaces()[0]
+    
+    # 断开连接
+    iface.disconnect()
+    time.sleep(1)
+    
+    # 确保设备处于断开或空闲状态
+    while iface.status() not in [const.IFACE_DISCONNECTED, const.IFACE_INACTIVE]:
+        time.sleep(1)
+    
+    print("^_^ 开始扫描附近的 Wi-Fi...")
+    
+    # 触发 Wi-Fi 扫描
+    iface.scan()
+    time.sleep(5)  # 扫描时间
+    
+    # 获取扫描结果
+    scan_results = iface.scan_results()
+    print("发现的 Wi-Fi 数量: %s" % len(scan_results))
+    
+    for wifi_info in scan_results:
+        print("SSID: %s, 信号强度: %s" % (wifi_info.ssid, wifi_info.signal))
+for attempt in range(3):
+    print(f"第 {attempt + 1} 次扫描...")
+    scan_wifi()

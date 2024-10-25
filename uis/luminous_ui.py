@@ -19,8 +19,8 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
     QGridLayout, QLineEdit, QMainWindow, QPushButton,
     QScrollArea, QSizePolicy, QStackedWidget, QTextEdit,
     QWidget)
-import image_rc
-import image_rc
+from qrc import image_rc
+#import image_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -643,7 +643,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.widget.setCurrentIndex(3)
+        #self.widget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -667,7 +667,7 @@ class Ui_MainWindow(object):
         self.normal_4.setText(QCoreApplication.translate("MainWindow", u"\u5f00\u59cb", None))
         self.comboBox_2.setItemText(0, QCoreApplication.translate("MainWindow", u"\u7b2c\u4e00\u7ae0", None))
 
-        self.checkBox.setText(QCoreApplication.translate("MainWindow", u"\u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\u00b7", None))
+        self.checkBox.setText(QCoreApplication.translate("MainWindow", u"                 ", None))
         self.textEdit_2.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

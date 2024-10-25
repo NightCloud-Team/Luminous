@@ -8,7 +8,7 @@ import win32gui
 import win32con
 import time
 import pywifi
-from pywifi import const
+from pywifi import PyWiFi, const, Profile
 
 ABM_GETSTATE = 0x00000004  # 获取任务栏状态的消息
 ABS_AUTOHIDE = 0x1         # 自动隐藏状态
@@ -152,3 +152,20 @@ def wallpaper_upload():
 
 def mouse():
     subprocess.run(['control.exe', 'main.cpl,,4'])
+
+def get_wifi_list():
+    name = []
+    wifi = pywifi.PyWiFi()
+    iface = wifi.interfaces()[0]
+    iface.disconnect()
+    while iface.status() not in [const.IFACE_DISCONNECTED, const.IFACE_INACTIVE]:
+        time.sleep(1)
+    print(1)
+    iface.scan()
+    print(2)
+    time.sleep(1)
+    scan_results = iface.scan_results()
+    for wifi_info in scan_results:
+        name.append(wifi_info.ssid)
+        print(name)
+    return name
