@@ -6,8 +6,10 @@
 }
 
 body {
-    background-image: url(html/src/images/001.jpg);
-    background-position: center center;
+    background-image: url(./picture/001.jpg);
+    background-position: center;
+    background-size: auto;
+    background-repeat: no-repeat;
 }
 
 .nav {
@@ -50,7 +52,9 @@ ul > span {
     background-color: rgba(247, 249, 250, 0.7);
     border-radius: 20px;
     margin: 20px auto;
-    text-align: center
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: auto;
 }
 
 .nav2 > a {
@@ -136,18 +140,8 @@ ul > span {
     /* 其他样式... */
 }
 
-.chat-container {
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-    background-color: rgba(247, 249, 250, 0.7);
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-
 .chat-window {
-    height: 80%;
+    height: 83%;
     overflow-y: auto;
     padding: 10px;
     border-bottom: 1px solid rgba(247, 249, 250, 0.7);
@@ -200,11 +194,6 @@ ul > span {
 
 #send-button:hover {
     background-color: #0056b3;
-}
-
-#nav2 > a > em {
-    font-style: oblique;
-    font-weight: bold;
 }
 
 .group {

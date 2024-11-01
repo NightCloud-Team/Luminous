@@ -7,7 +7,9 @@
 
 body {
     background-image: url(../images/001.jpg);
-    background-position: center center;
+    background-position: center;
+    background-size: auto;
+    background-repeat: no-repeat;
 }
 
 .nav {
@@ -138,20 +140,8 @@ ul > span {
     /* 其他样式... */
 }
 
-/*.chat-container {
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-    background-color: rgba(247, 249, 250, 0.7);
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-同时应用这个样式表和nav2会导致窗口背景重叠显示
-*/
-
 .chat-window {
-    height: 420px;
+    height: 83%;
     overflow-y: auto;
     padding: 10px;
     border-bottom: 1px solid rgba(247, 249, 250, 0.7);
