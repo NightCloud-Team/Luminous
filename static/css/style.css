@@ -3,42 +3,33 @@
     padding: 0;
     list-style: none;
     text-decoration: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
 body {
-    background-image: url(./picture/001.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-image: url(html/src/images/001.jpg);
+    background-position: center center;
 }
 
-
-#nav {
-    width: 910px;
+.nav {
+    width: 750px;
     height: 72px;
     background-color: rgba(247, 249, 250, 0.7);
     border-radius: 20px;
     margin: 20px auto;
 }
 
-#nav > ul > li {
+.nav > ul > li {
     float: left;
-    width: 175.75px;
+    width: 176px;
     height: 72px;
     text-align: center;
 }
 
-#nav > ul > li > a {
+.nav > ul > li > a {
     text-align: center;
     line-height: 72px;
     font-size: 20px;
     color: black;
-    text-align: center;
 }
 
 #nav > ul > li > a:hover {
@@ -53,133 +44,162 @@ ul > span {
     font-size: 24px;
 }
 
-
-.loader {
-    background: radial-gradient(#222, #000);
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-    position: fixed;
-    right: 0;
-    top: 0;
-    z-index: 99999;
-}
-
-.loader-inner {
-    bottom: 0;
-    height: 60px;
-    left: 0;
-    margin: auto;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 100px;
-}
-
-.loader-line-wrap {
-    animation: spin 2000ms cubic-bezier(.175, .885, .32, 1.275) infinite;
-    box-sizing: border-box;
-    height: 50px;
-    left: 0;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    transform-origin: 50% 100%;
-    width: 100px;
-}
-
-.loader-line {
-    border: 4px solid transparent;
-    border-radius: 100%;
-    box-sizing: border-box;
-    height: 100px;
-    left: 0;
-    margin: 0 auto;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 100px;
-}
-
-.loader-line-wrap:nth-child(1) {
-    animation-delay: -50ms;
-}
-
-.loader-line-wrap:nth-child(2) {
-    animation-delay: -100ms;
-}
-
-.loader-line-wrap:nth-child(3) {
-    animation-delay: -150ms;
-}
-
-.loader-line-wrap:nth-child(4) {
-    animation-delay: -200ms;
-}
-
-.loader-line-wrap:nth-child(5) {
-    animation-delay: -250ms;
-}
-
-.loader-line-wrap:nth-child(1) .loader-line {
-    border-color: hsl(0, 80%, 60%);
-    height: 90px;
-    width: 90px;
-    top: 7px;
-}
-
-.loader-line-wrap:nth-child(2) .loader-line {
-    border-color: hsl(60, 80%, 60%);
-    height: 76px;
-    width: 76px;
-    top: 14px;
-}
-
-.loader-line-wrap:nth-child(3) .loader-line {
-    border-color: hsl(120, 80%, 60%);
-    height: 62px;
-    width: 62px;
-    top: 21px;
-}
-
-.loader-line-wrap:nth-child(4) .loader-line {
-    border-color: hsl(180, 80%, 60%);
-    height: 48px;
-    width: 48px;
-    top: 28px;
-}
-
-.loader-line-wrap:nth-child(5) .loader-line {
-    border-color: hsl(240, 80%, 60%);
-    height: 34px;
-    width: 34px;
-    top: 35px;
-}
-
-@keyframes spin {
-
-    0%,
-    15% {
-        transform: rotate(0);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-#nav2 {
+.nav2 {
     width: 750px;
     height: 500px;
     background-color: rgba(247, 249, 250, 0.7);
     border-radius: 20px;
     margin: 20px auto;
-    text-align: center;
+    text-align: center
 }
 
-#nav2 > a {
+.nav2 > a {
     text-align: right;
     font-size: 24px;
+
+}
+
+/* 现有的CSS样式... */
+
+/* 确保#nav ul具有相对定位 */
+#nav ul {
+    position: relative;
+}
+
+/* 调整二级导航栏的显示逻辑 */
+#nav > ul > li:hover > a + .subnav {
+    display: block;
+}
+
+/* 确保当鼠标悬停在二级导航栏上时，它不会消失 */
+.subnav:hover {
+    display: block;
+}
+
+/* 子菜单的子元素也应保持显示状态 */
+.subnav ul li:hover > a {
+    background-color: rgba(247, 249, 250, 0.7);
+}
+
+/* 调整#nav ul li的宽度，确保与子菜单对齐 */
+#nav > ul > li {
+    position: relative; /* 为.subnav提供定位上下文 */
+}
+
+/* 二级导航栏的容器默认不显示 */
+.subnav {
+    display: none;
+    position: absolute;
+    top: 100%; /* 位于父<li>元素的下方 */
+    left: 50%; /* 初始设置为50%，然后根据需要调整 */
+    transform: translateX(-50%); /* 向左移动50%以居中对齐 */
+    min-width: 150px; /* 确保有足够的宽度 */
+    background-color: rgb(247, 249, 250);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    border-radius: 5px; /* 可选：添加圆角边框 */
+}
+
+/* 鼠标悬浮在设置的<a>标签上时显示二级导航栏 */
+#nav > ul > li > a:hover + .subnav,
+#nav > ul > li > a:focus + .subnav {
+    display: block;
+}
+
+/* 二级导航栏的样式 */
+.subnav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.subnav ul li {
+    padding: 8px 0; /* 垂直内边距 */
+}
+
+.subnav ul li a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    padding: 8px 15px; /* 水平内边距 */
+}
+
+.subnav ul li a:hover {
+    background-color: #f0f0f0;
+}
+
+#nav > ul > li > a {
+    display: block; /* 使<a>标签占据整个<li>元素的空间 */
+    width: 100%; /* 确保<a>标签宽度占满其父元素<li> */
+    height: 100%; /* 确保<a>标签高度占满其父元素<li> */
+    text-decoration: none; /* 可选：去除下划线 */
+    /* 其他样式... */
+}
+
+.chat-container {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    background-color: rgba(247, 249, 250, 0.7);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.chat-window {
+    height: 80%;
+    overflow-y: auto;
+    padding: 10px;
+    border-bottom: 1px solid rgba(247, 249, 250, 0.7);
+}
+
+.message {
+    margin-bottom: 10px;
+}
+
+.message.user {
+    text-align: right;
+    color: #333;
+}
+
+.message.bot {
+    text-align: left;
+    color: #007BFF;
+}
+
+.input-area {
+    bottom: 0;
+    display: flex;
+    padding: 10px;
+}
+
+#user-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#send-button {
+    margin-left: 10px;
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#send-button:disabled {
+    background-color: #cccccc;
+    /* 禁用时背景色 */
+    color: #666666;
+    /* 禁用时字体颜色 */
+    cursor: not-allowed;
+}
+
+#send-button:hover {
+    background-color: #0056b3;
 }
 
 #nav2 > a > em {
@@ -187,7 +207,22 @@ ul > span {
     font-weight: bold;
 }
 
-.button {
+.group {
+    display: none;
+}
+
+.group.active {
+    display: block;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn {
     background-color: #128d09;
     color: white;
     width: 120px;
@@ -198,38 +233,31 @@ ul > span {
     text-align: center;
     border-radius: 10px;
     box-shadow: 0 5px #999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    margin: 0 25px;
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 10px;
 }
 
-.buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
+
+.btn:hover {
+    background-color: #3e8e41
 }
 
-.button:hover {
-    background-color: #3e8e41;
-}
-
-.button:active {
+.btn:active {
     background-color: #3e8e41;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
 
-.button span {
+.btn span {
+    text-align: center;
     cursor: pointer;
     display: inline-block;
     position: relative;
     transition: 0.5s;
 }
 
-.button span:after {
+.btn span:after {
     content: '»';
     position: absolute;
     opacity: 0;
@@ -238,15 +266,14 @@ ul > span {
     transition: 0.5s;
 }
 
-.button:hover span {
+.btn:hover span {
     padding-right: 25px;
 }
 
-.button:hover span:after {
+.btn:hover span:after {
     opacity: 1;
     right: 0;
 }
-
 
 .center {
     text-align: center;
