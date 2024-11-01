@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 
 <head>
     <meta charset="UTF-8">
     <script src="src/js/jquery.min.js"></script>
-    <link rel="stylesheet" href="src/css/style.css"/>
+    <link href="src/css/style.css" rel="stylesheet"/>
     <link href="fontawesome/css/fontawesome.css" rel="stylesheet"/>
     <link href="fontawesome/css/brands.css" rel="stylesheet"/>
     <link href="fontawesome/css/solid.css" rel="stylesheet"/>
@@ -13,50 +13,46 @@
 
 <body>
 <!-- 导航栏 -->
-<div id="nav">
+<nav class="nav" id="nav">
     <ul>
-        <li><a class="fa-solid fa-house nav-link" data-target="#index">首页</a></li>
-        <span>|</span>
-        <li><a class="fa-solid fa-globe nav-link" href="#" data-target="#learn">学习</a></li>
-        <span>|</span>
-        <li><a class="fa-solid fa-xmark">设置</a>
+        <li><a class="fa-solid fa-house nav-link" data-target="#index" href="javascript:void(0);">首页</a></li>
+        <li><a class="fa-solid fa-globe nav-link" data-target="#learn" href="javascript:void(0);">学习</a></li>
+        <li><a class="fa-solid fa-cog">设置</a>
             <div class="subnav">
                 <ul>
-                    <li><a href="#" class="nav-link" data-target="#system-settings">系统设置</a></li>
-                    <li><a href="#" class="nav-link" data-target="#software-settings">软件设置</a></li>
+                    <li><a class="nav-link fa-solid fa-sliders" data-target="#system-settings" href="javascript:void(0);">系统设置</a>
+                    </li>
+                    <li><a class="nav-link fa-solid fa-wrench" data-target="#software-settings" href="javascript:void(0);">软件设置</a>
+                    </li>
                 </ul>
             </div>
         </li>
-        <span>|</span>
-        <li><a class="fa-solid fa-user nav-link" href="#">关于</a></li>
+        <li><a class="nav-link fa-solid fa-user" data-target="#about" href="javascript:void(0);">关于</a></li>
     </ul>
-</div>
+</nav>
 <!-- 主页 -->
-<div id="index" class="group active">
-    <div id="nav2">
-
-        <div class="chat-container">
+<div class="group active" id="index">
+    <div class="nav2" id="nav1">
             <div class="chat-window" id="chat-window">
             </div>
             <div class="input-area">
-                <input type="text" id="user-input" placeholder="输入你的需求">
+                <input id="user-input" placeholder="输入你的需求" type="text">
                 <!-- <button id="send-button" onclick="sendmessage()">发送</button> -->
                 <button id="send-button">发送</button>
             </div>
-        </div>
     </div>
 </div>
 <!-- 学习 -->
-<div id="learn" class="group">
-    <div id="nav2">
+<div class="group" id="learn">
+    <div class="nav2" id="nav2">
         <button class="btn center">
             <span class="center">123</span>
         </button>
     </div>
 </div>
 <!-- 系统设置 -->
-<div id="system-settings" class="group">
-    <div id="nav2" class="buttons">
+<div class="group" id="system-settings">
+    <div class="buttons nav2" id="nav3">
         <button class="btn center">
             <span class="center">更换壁纸</span>
         </button>
@@ -69,6 +65,14 @@
         <button class="btn center">
             <span class="center">鼠标设置</span>
         </button>
+    </div>
+</div>
+<div class="group" id="software-settings">
+    <div class="nav2" id="nav4">
+    </div>
+</div>
+<div class="group" id="about">
+    <div class="nav2" id="nav5">
     </div>
 </div>
 </body>
