@@ -7,16 +7,18 @@ from uis.wifi_ui_ui import Ui_Form
 from function.system import *
 from function.functions import *
 from pywifi import PyWiFi, const, Profile
+from PySide6.QtCore import Qt
 import json
 
 #from uis.luminous_ui import Ui_MainWindow   # 导入你自动生成的 UI 文件
 
-class MainWindow(QMainWindow,Ui_MainWindow):
+class MainWindow(QMainWindow,Ui_MainWindow,QWidget):
     def __init__(self):
         super(MainWindow,self).__init__()
         #self.ui = Ui_MainWindow()
         self.setupUi(self) # 调用自动生成的 UI 设置函数
         self.setup_connections()
+        self.setWindowFlags(Qt.FramelessWindowHint)
         self.button_function()
         self.checkBox.stateChanged.connect(self.change_image)
         with open("./settings/software_settings.json","r") as self.pages:
